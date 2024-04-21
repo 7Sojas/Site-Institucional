@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7SOJAS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="sessao_home">
+        <ul class="navbar">
+            <img src="logoNavbar.png" alt="Logo7Sojas">
+            <div class="itens_navbar">
+                <li>HOME</li>
+                <li>SOBRE NÓS</li>
+                <li>SENSORES</li>
+                <li>CALCULE SEU PROJUÍZO</li>
+                <li>ORÇAMENTO</li>
+                <li>CONTATO</li>
+                <li id="btn_cadastro">CADASTRO <img src="seta.png" alt="Seta"></li>
+            </div>
+        </ul>
+        <div class="conteudo_home">
+            <img src="logoHome.png" alt="Logo7Sojas">
+            <div id="btn_conheca_projeto">
+                CONHEÇA O PROJETO
+            </div>
+        </div>
+    </div>
+    <div id="sessao_sobre_nos">
+        <div class="conteudo_sobre_nos">
+            <div class="texto_sobre_nos">
+                <h1>SOBRE NÓS</h1>
+                <p>
+                    A 7Sojas é uma empresa inovadora que oferece soluções tecnológicas para o agronegócio, 
+                    com foco na cadeia de armazenamento de sojas.
+                </p>
+                <p>
+                     Nossa missão é ajudar proprietários de silos a alcançarem o máximo potencial de 
+                    seus silos, com o máximo de eficiência e rentabilidade.
+                </p>
+                <p>
+                    Proteja sua produção e maximize seus resultados com o sistema de 
+                    monitoramento de temperatura e umidade da 7Sojas!
+                </p>
+            </div>
+            <div class="imagem_sobre_nos">
+                <img src="logo.png" alt="Logo">
+            </div>
+        </div>
+    </div>
+    <div id="sessao_sensores">
+        <div class="texto_sensores">
+            <h1>SENSORES</h1>
+            <p>
+                Utilizamos os melhores sensores do mercado para garantir a 
+                máxima precisão e confiabilidade no monitoramento.
+            </p>
+            <p>
+                Com a 7 Sojas, você pode ter a certeza de que seus grãos estão armazenados 
+                em condições ideais, maximizando a qualidade e a rentabilidade da sua produção.
+            </p>
+            <p class="negrito">
+                Solicite um orçamento sem compromisso e descubra como podemos te ajudar a 
+                alcançar o máximo potencial da sua produção de soja.
+            </p>
+        </div>
+        <div class="primeiro_bloco">
+            <img class="imagem_sensores" src="ARDUINO.png" alt="Imagem do arduino">
+        </div>
+        <div class="segundo_bloco">
+            <img class="imagem_sensores" src="DHT11.png" alt="imagem do DHT11">
+            <img class="imagem_sensores" src="LM35.png" alt="Imagem do LM35">
+        </div>
+    </div>
+    <div id="sessao_rodape">
+        <div class="header">
+            <h1>ENTRE EM CONTATO</h1>
+            <img src="soja.jpg" alt="Logo7Sojas">
+        </div>
+        <div class="formulario">
+            <div class="item_esquerda">
+                <p>Você pode nos contatar via e-mail <a>7sojas@gmail.com</a> ou telefone <a>(11) 92414-3814</a> </p>
+                Nome e Sobrenome:
+                <input id="input_nome" class="input_nome" type="text">
+                Email:
+                <input id="input_email" class="input_email" type="text">
+                Telefone:
+                <input id="input_telefone" class="input_telefone" type="number">
+            </div>
+            <div class="item_direita">
+                Como podemos ajudar?
+                <textarea id="input_mensagem" cols="30" rows="10"></textarea>
+                <button onclick="">Envie uma mensagem</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

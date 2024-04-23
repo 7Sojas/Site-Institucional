@@ -20,16 +20,13 @@
 
 <body>
 
-    <div class="bolha"></div>
-    <div class="bolha2"></div>
-
     <aside class="menu">
 
         <img src="src/logo.png" alt="Logo 7sojas">
 
         <nav>
             <ul>
-                <li><a style="color: #5cff95;" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                <li><a style="color: #5cff95;" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list">
                             <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
@@ -96,63 +93,58 @@
 
             <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
                 stroke="#ffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-clipboard-list">
-                <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                <path d="M12 11h4" />
-                <path d="M12 16h4" />
-                <path d="M8 11h.01" />
-                <path d="M8 16h.01" />
-                <h1>DASHBOARD</h1>
-        </div>
-
-        <div>
-            <svg class="search" mlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
-                stroke="#fffc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-search">
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
+                class="lucide lucide-bar-chart-3">
+                <path d="M3 3v18h18" />
+                <path d="M18 17V9" />
+                <path d="M13 17V5" />
+                <path d="M8 17v-3" />
             </svg>
-
-            <input placeholder="Pesquisar silo.." id="iptSearch" onkeyup="pesquisarSilo()" type="search" />
+            <h1>INFORMAÇÕES DO <span style="color: #5cff95;">SILO 1</span></h1>
         </div>
-        <h2>SILOS</h2>
-
-        <div class="card-content">
 
 
-            <a href="/silo.html">
-                <div class="card">
-                    <img src="src/planta.png" alt="">
-                    <li>
-                        <h3>Silo 1</h3>
-                    </li>
+        <div class="graficos">
+            <a href="historico.html">
+                <div class="graficos-cards">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-history">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                        <path d="M12 7v5l4 2" />
+                        <h3> Ver histórico do silo</h3>
                 </div>
             </a>
-            <a href="/silo.html">
-                <div class="card">
-                    <img src="src/planta.png" alt="">
-                    <li>
-                        <h3>Silo 2</h3>
-                    </li>
+
+            <div class="graficos-cards">
+                <h3> Gráfico diário de Temperatura </h3>
+
+                <div>
+                    <canvas id="temperatura"></canvas>
                 </div>
-            </a>
-            <a href="/silo.html">
-                <div class="card">
-                    <img src="src/planta.png" alt="">
-                    <li>
-                        <h3>Silo 3</h3>
-                    </li>
+            </div>
+            <div class="graficos-cards">
+                <h3> Temperatura Atual</h3>
+
+                <div>
+                    <p>32°C</p>
                 </div>
-            </a>
-            <a href="/silo.html">
-                <div class="card">
-                    <img src="src/planta.png" alt="">
-                    <li>
-                        <h3>Silo 4</h3>
-                    </li>
+            </div>
+            <div class="graficos-cards">
+                <h3> Umidade Atual </h3>
+
+                <div>
+                    <p>45%</p>
                 </div>
-            </a>
+            </div>
+            <div class="graficos-cards">
+                <h3> Gráfico diário de Umidade</h3>
+
+                <div>
+                    <canvas id="umidade"></canvas>
+                </div>
+            </div>
+
 
         </div>
 
@@ -161,46 +153,80 @@
 
     </main>
 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
     <script>
+        const temperatura = document.getElementById('temperatura');
+        const umidade = document.getElementById('umidade');
 
-        function pesquisarSilo() {
-
-            const search = iptSearch.value;
-            let filtro = search.toUpperCase()
-            let card = document.querySelector('.card-content');
-            let cards
-            let li = card.getElementsByTagName('li')
-            let h3;
-
-
-            for (let count = 0; count < li.length; count++) {
-
-                cards = card.getElementsByTagName('a')[count]
-
-                h3 = cards.querySelector('h3').textContent
-
-                if (h3.toUpperCase().indexOf(filtro) == -1) {
-                    cards.classList.remove('display-block')
-                    cards.classList.add('display-none')
-                } else {
-                    cards.classList.add('display-block')
-                    cards.classList.remove('display-none')
+        new Chart(temperatura, {
+            type: 'line',
+            data: {
+                labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'],
+                datasets: [{
+                    label: 'Temperatura',
+                    data: ['5', 19, 33, 35, 22, 33, 20, 22, 33, 32, 35, 25, 34, 40],
+                    borderWidth: 1,
+                    borderColor: '#5ccc95',
+                    color: '#0000',
+                    backgroundColor: '#5ccc95'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 20
+                            },
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
-
             }
+        });
+        new Chart(umidade, {
+            type: 'line',
+            data: {
+                labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'],
+                datasets: [{
+                    label: 'Umidade',
+                    data: [40, 40, 45, 47, 45, 40, 40, 42, 45, 42, 43, 44],
+                    borderWidth: 1,
+                    borderColor: '#5ccc95',
+                    color: '#0000',
+                    backgroundColor: '#5ccc95'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            font: {
+                                size: 20
+                            },
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 
-
-
-
-
-        }
-
-
-
-
-
+       
     </script>
-
 
 
 </body>

@@ -4,15 +4,12 @@ body
     margin: 0;
     padding: 0;
     border: 0;
-
     font-family: 'Poppins', sans-serif;
 }
 
-
-
 #sessao_home
 {
-    background-image: url("fundoSoja.png");
+    background-image: url("img_one_page/fundoSoja.png");
     background-size: cover;
     height: 100vh;
     background-position: top;
@@ -34,6 +31,13 @@ body
     justify-content: flex-start;
 }
 
+.navbar a
+{
+
+    text-decoration: none; 
+    color: inherit; 
+}
+
 .itens_navbar
 {
     display: flex;
@@ -41,7 +45,6 @@ body
     height: 100%;
     list-style: none;
     color:#FFF;
-    font-family: Poppins;
     font-size: 14px;
     font-weight: 800;
     line-height: 21px;
@@ -65,7 +68,6 @@ body
 #btn_conheca_projeto
 {
     background-color: #A7C355;
-    font-family: Poppins;
     font-size: 16px;
     padding: 2.5% 15%;
     width: 55%;
@@ -179,7 +181,7 @@ body
 
 .texto_sensores p {
     text-align: justify; 
-    font-size: 21px;
+    font-size: 18px;
     margin-top: 2%;
 }
 
@@ -190,7 +192,7 @@ body
 .primeiro_bloco
 {
     display: flex;
-    width: 13%;
+    width: 12%;
     align-items: center;
 
 }
@@ -205,5 +207,179 @@ body
 .negrito
 {
     font-weight: bold;
+}
+
+
+
+/*CONTATO*/
+
+#sessao_contato
+{
+    background-image: linear-gradient(to bottom, #021704, #000); 
+    height: 94vh;
+    color: #FFF;
+}
+
+.header
+{
+    display: flex;
+    height: 15%;
+    padding-top: 4%;
+    align-items: center;
+    margin-left: 10%;
+    margin-bottom: 2%;
+}
+
+.header h1
+{
+    width: 85%;
+}
+
+.formulario
+{
+    display: flex;
+    margin-left: 10%;
+    margin-left: 10%;
+}
+
+.item_esquerda
+{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    font-size: 18px;
+}
+
+.item_esquerda p
+{
+    margin: 0;
+    margin-bottom: 1%;
+}
+
+.item_esquerda a
+{
+    color: #498C58;
+}
+
+.campo
+{
+    display: flex;
+    align-items: center;
+    margin-top: 4%;
+}
+
+.campo p
+{
+    margin-right: 1%;
+}
+
+.campo input
+{
+    background: linear-gradient(90deg, rgba(167, 195, 85, 0.08) 0%, rgba(80, 93, 41, 0.26) 100%);
+    color: #fff; 
+    border: none; 
+    padding: 5px 8px;
+    width: 100%;
+}
+
+.campo input:focus
+{
+    outline: none; 
+}
+
+#campo_nome p
+{
+    width: 50%;
+    margin: 0;
+    padding: 0;
+}
+
+.item_direita
+{
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    width: 35%;
+    justify-content: space-around;
+    margin-left: 14%;
+    align-items: end;
+
+}
+
+.item_direita p
+{
+   text-align: end;
+}
+
+
+#input_mensagem {
+    background: linear-gradient(90deg, rgba(167, 195, 85, 0.08) 0%, rgba(80, 93, 41, 0.26) 100%);
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    width: 100%;
+    height: 42%; 
+    resize: none; 
+}
+
+
+#input_mensagem:focus
+{
+    outline: none; 
+}
+
+
+.item_direita button 
+{
+    margin-top: 10%;
+    background-color: #09420D; 
+    color: #fff; 
+    font-weight: bold; 
+    border: none; 
+    border-radius: 20px; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    transition: 0.3s;
+    width: 54%;
+}
+
+.item_direita button:hover
+{
+    transform: scale(1.04);
+}
+
+/*RODAPÉ*/
+
+#sessao_rodape
+{
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    height: 32vh;
+    color: #FFF;
+    align-items: center;
+}
+
+.imagem_redes
+{
+    margin-top: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40%;
+    width: 50%;
+}
+
+.imagem_redes img
+{
+    width: 4rem;
+}
+
+#direitos
+{
+    margin-top: 2%;
+    color: #515151;
+    font-weight: bold;
+    font-size: 16px;
 }
 

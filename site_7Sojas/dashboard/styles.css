@@ -1,0 +1,398 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(src/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #000000;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+/* FUNDO BOLHA */
+
+
+
+/* ASIDE => MENU */
+
+.icone {
+    max-width: 200px;
+    width: 20px;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+
+    background: linear-gradient(#151515, rgb(0, 40, 18));
+    height: 100vh;
+
+    padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+
+.menu img {
+    width: 100%;
+    max-width: 200px;
+}
+
+.menu nav {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    flex-direction: column;
+    height: 70%;
+}
+
+.menu nav li {
+    margin-bottom: 20px;   
+    align-items: center; 
+}
+
+.menu  a {
+    font-weight: 600;
+    display: flex;
+    gap: 15px;
+
+    text-transform: lowercase;
+}
+
+.menu div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+main {
+    max-width: 1300px;
+    margin-left: 300px;
+    padding: 0 3rem 2rem;
+}
+
+main > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+main h1 {
+    margin: 2rem 0;
+    color: #ffffffe7;
+    font-size: 2rem;
+}
+
+
+/* CARDS SILOS */
+
+
+main h2 {
+    color: rgba(255, 255, 255, 0.869);
+    margin-bottom: 5px;
+}
+
+main > div {
+    position: relative;
+}
+
+main .search {
+    position: absolute;
+    right: 30px;
+    top: 15px;
+}
+
+main input {
+    width: 99%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+
+    padding: 20px 15px;
+    color: white;
+    background-color: #000000;
+    border: 2px solid #042312;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+main input::placeholder {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #ffffff63;
+}
+
+main input:focus {
+    border: 2px solid #0c6333;
+    outline: none;
+    color: white;
+}
+
+.card-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    color: white;
+}
+
+.card {
+    text-align: center;
+    border-radius: 7px;
+    background-color: #042312;
+    padding: 2rem 1.5rem;
+    flex: 1 300px;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.display-none {
+    display: none;
+}
+
+
+.display-block {
+    display: block;
+}
+
+
+
+.card:hover {
+    background-color: rgb(4, 28, 15);
+    transition: .2s;
+}
+
+.card img {
+    max-width: 200px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+/* GRAFICOS */
+
+
+.graficos {
+    display: flex;
+    gap: 20px 15px;
+
+    flex-wrap: wrap;
+}
+
+.graficos-cards {
+    font-size: .9rem;
+    padding: 1rem;
+    color: rgba(255, 255, 255, 0.738);
+    background-color: #05170d;
+    border-radius: 10px;
+    
+    width: 300px;
+    height: 450px;
+    transition: .2s;
+}
+
+.graficos a {
+    width: 100%;
+    padding: 0;
+    margin-top: 2rem;
+}
+
+
+.graficos-cards:nth-child(1) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 10px;
+
+    height: 100%;
+    flex: 1 1 100%;
+
+
+}
+
+.graficos-cards:nth-child(1):hover {
+    background-color: #031009;
+}
+
+
+.graficos-cards:nth-child(2) {
+    width: 800px;
+    flex-direction: column;
+
+    display: flex;
+}
+
+canva {
+    width: 100% !important;
+    height: 100% m !important;
+}
+
+.graficos-cards:nth-child(3) {
+    text-align: center;
+    flex: 1;
+}
+
+.graficos-cards:nth-child(3) > div {
+    padding: 2rem;
+    font-size: 3rem;
+    text-align: center;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.graficos-cards:nth-child(4) > div {
+    font-size: 3rem;
+    text-align: center;
+    height: 90%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.graficos-cards:nth-child(4) {
+    flex: 1;
+    text-align: center;
+}
+
+.graficos-cards:nth-child(5) {
+    width: 800px;
+}
+
+
+
+
+.graficos-cards:hover {
+    transition: .2s;
+}
+
+/* SENSORES */
+
+.sensor-content {
+    display: flex;
+    gap: 15px;   
+}
+
+
+.card-sensor {
+    background-color: #042312;
+    color: white;
+
+    width: 280px;
+    padding: 2rem 1.5rem;
+    
+    text-align: center;
+
+    border-radius: 7px;
+}
+
+.card-sensor:hover {
+    background-color: rgb(4, 28, 15);
+    transition: .2s;
+}
+
+.card-sensor p {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.card-sensor img {
+    max-width: 150px;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+
+    .menu {
+        width: 60px;
+        padding: 1rem;
+    }
+
+    
+    .menu span{
+        display: none;
+    }
+
+    main {
+        margin-left: 60px;
+    }
+
+    .menu nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 0 1rem 2rem;
+    }
+
+    .card-content {
+        display: block;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .sensor-content {
+        flex-wrap: wrap;
+        display: flex;
+        gap: 15px;   
+    }
+
+    .card-sensor {
+        background-color: #042312;
+        color: white;
+    
+        width: 100%;
+        flex: 1 500px;
+        padding: 2rem 1.5rem;
+        
+        text-align: center;
+    
+        border-radius: 7px;
+    }
+
+    .graficos-cards {
+        width: 100%;
+        flex: 1;
+    }
+
+    .graficos {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    main h1 {
+        font-size: 1.5rem;
+    }
+    
+
+}

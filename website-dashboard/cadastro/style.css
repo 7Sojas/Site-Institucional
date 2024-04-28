@@ -1,5 +1,5 @@
 body {
-    background: url('./src/fechar-os-detalhes-da-textura-do-filme.jpg');
+    background: url('./src/fechar-os-detalhes-da-textura-do-filme\ \(1\).jpg');
     background-size: 100%;
 
     margin: 0;
@@ -50,36 +50,52 @@ body a {
     justify-content: space-around;
 }
 
+.caixa-login{
+    font-size: 15px;
+    color: white;
+    font-style: inherit;
+    width: 700px;
+    height: 655px;
+    background-color: rgb(3, 3, 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    margin-right: 0;
+    margin-top: -95px;
+    margin-bottom: 0;
+}
+
 .caixa-login input {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid #36615f;
+    border-bottom: 1px solid #575252;
+    color: #FFF;
     /* Estiliza somente a borda inferior para que fique como uma linha */
-    width: 90%;
+    width: 400px;
     padding: 10px;
     font-size: 16px;
     outline: none;
+    height: 15px;
 }
 
 .caixa-login button {
     color: white;
-    background-color: rgb(1, 36, 1);
-    width: 200px;
-    height: 20px;
+    background-color: #4bff1e;
+    width: 180px;
+    height: 40px;
     border-color: black;
     border-radius: 8px;
 }
 
-.caixa-login img{
+.caixa-login-maior img {
     border-radius: 30px;
-}
-
-.caixa-login-maior .img_grande {
-    border-radius: 30px;
-    margin-top: 80px;
-    width: 400px;
-    height: 400px;
-    margin-left: 80px;
+    margin-top: -50px;
+    width: 600px;
+    height: 600px;
+    margin-left: 0px;
+    max-width: 650px;
+    max-height: 650px;
 }
 
 .caixa-cadastro-maior {

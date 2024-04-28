@@ -4,7 +4,7 @@
 
 ## Site institucional da empresa 7sojas
 
-# TECNOLOGIAS UTILIZADAS
+### TECNOLOGIAS UTILIZADAS
 
 - HTML
 - CSS

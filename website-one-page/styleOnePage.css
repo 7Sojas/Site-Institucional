@@ -117,7 +117,7 @@ body
 #sessao_sobre_nos
 {
     background-image: linear-gradient(to bottom, #021704, #000); 
-    height: 90vh;
+    height: 98vh;
     display: flex;
     align-items: center;
 }
@@ -157,7 +157,7 @@ body
 {
     background-color: #000;
     display: flex;
-    height: 100vh;
+    height: 90vh;
     justify-content: space-around;
 }
 
@@ -172,11 +172,11 @@ body
 {
     display: flex;
     color: #FFF;
-    width: 36%;
+    width: 34%;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 10%;
-    margin-left: 6%;
+    margin-left: 8%;
 }
 
 .texto_sensores p {
@@ -209,7 +209,76 @@ body
     font-weight: bold;
 }
 
+/*Vantagens*/
+#sessao_vantagem
+{
+    background-image: url(img_one_page/fundoVantagens.png); 
+    height: 92vh;
+}
 
+.card
+{
+    background-color: #09420D;
+    width: 20%;
+    height: 30%;
+    padding: 2%;
+    border-radius: 4%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card h3
+{
+   color: #A7C355;
+   padding: 0;
+   margin: 0;
+}
+
+.card:hover
+{
+    transform: scale(1.05);
+}
+
+.img_card
+{
+    width: 4cm;
+    height: 4cm;
+}
+
+#titulo img
+{
+    width: 8%;
+    height: 8%;
+}
+
+#titulo
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2%;
+    margin-left: 4%;
+    margin-bottom: 4%;
+    color: #FFF;
+}
+
+.area_cards
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.texto_card
+{
+    width: 270px;
+    height: 125px;
+    text-align:inherit;
+    text-align:start;
+    color: #FFF;
+    font-size: 14px;
+}
 
 /*CONTATO*/
 
@@ -289,7 +358,7 @@ body
 
 #campo_nome p
 {
-    width: 50%;
+    width: 60%;
     margin: 0;
     padding: 0;
 }

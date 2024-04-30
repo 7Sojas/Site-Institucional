@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7SOJAS</title>
-    <link rel="stylesheet" href="styleOnePage.css">
-    <link rel="icon" type="image/png" href="img_one_page/logoNavegador.png">
+    <link rel="stylesheet" href="styleOnePage.css"> <!--Endereço de conexão com o css-->
+    <link rel="icon" type="image/png" href="img_one_page/img_calculadora/soja.ico"> <!--ícone da aba do navegador-->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--Importação da font Poppins-->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!--Sessão Home-->
     <div id="sessao_home">
         <div class="container_navbar">
             <ul class="navbar">
@@ -23,11 +25,12 @@
                     <li><a href="#sessao_vantagem">VANTAGENS</a></li>
                     <li><a href="#sessao_calculadora_prejuizo">CALCULE SEU PREJUÍZO</a></li>
                     <li><a href="#sessao_contato">CONTATO</a></li>
-                    <li><li id="btn_login">LOGIN</li>
-                    <li id="btn_cadastro">CADASTRO <img src="img_one_page/seta.png" alt="Seta"></li></li>
+                    <li><li id="btn_login"><a href="cadastro/login.html">LOGIN</a></li>
+                    <li id="btn_cadastro"><a href="cadastro/cadastro.html">CADASTRO</a><img src="img_one_page/seta.png" alt="Seta"></li></li>
                 </div>
             </ul>
         </div>
+
         <div class="conteudo_home">
             <img src="img_one_page/logoHome.png" alt="Logo7Sojas">
             <div id="btn_conheca_projeto">
@@ -35,6 +38,8 @@
             </div>
         </div>
     </div>
+
+    <!--Sessão sobre nós-->
     <div id="sessao_sobre_nos">
         <div class="conteudo_sobre_nos">
             <div class="texto_sobre_nos">
@@ -57,6 +62,8 @@
             </div>
         </div>
     </div>
+
+    <!--Sessão sensores-->
     <div id="sessao_sensores">
         <div class="texto_sensores">
             <h1>SENSORES</h1>
@@ -81,6 +88,8 @@
             <img class="imagem_sensores" src="img_one_page/LM35.png" alt="Imagem do LM35">
         </div>
     </div>
+
+    <!--Sessão vantagens-->
     <div id="sessao_vantagem">
         <div id="titulo">
             <h1>Por que escolher a</h1>
@@ -115,8 +124,42 @@
             </div>
         </div>
     </div>
+
+    <!--Sessão calculadora-->
     <div id="sessao_calculadora_prejuizo">
+        <h2 class="titleCalculadora">CALCULE SEU PREJUÍZO</h2>
+        <div class="propriedades">
+            <!-- Container principal que guarda o container da esquerda(Inputs e botão) e da direita(Resposta) -->
+            <div class="topicos_esquerda"> <!-- Container da esquerda, contendo Inputs e botão -->
+                <img src="img_one_page/img_calculadora/Logo.png" class="logoCalculadora"> <!-- Logo 7Sojas -->
+
+                <div class="conteudoCalculadora">
+                    Informe a capacidade do seu silo (em toneladas):
+                    <input type="number" id="input_capacidadeSilo">
+                </div>
+
+                <div class="conteudoCalculadora">
+                    Informe a quantidade de silos:
+                    <input type="number" id="input_quantidadeSilos">
+                </div>
+
+                <div class="conteudoCalculadora">
+                    Informe o valor médio por saca:
+                    <input type="number" id="input_valorPorSacaSoja">
+                </div>
+                <p id="btn"><button onclick="CalcularPrejuizo()" class="buttonCalculadora">CALCULAR PREJUÍZO</button></p>
+            </div>
+
+            <div class="topicos_direita">
+                <!-- Container da direita, contém a imagem até que o cliente clique no botão, ao clicar, a imagem é oculta e aparece a resposta -->
+                <img src="img_one_page/img_calculadora/desenho.png" id="desenhoCalculadora"> <!-- Imagem antes do cliente clicar no botão -->
+                <div id="show"></div> <!-- div que será puxada pelo innerHTML, para que apareça a resposta -->
+                
+            </div>
+        </div> 
     </div>
+
+    <!--Sessão contato-->
     <div id="sessao_contato">
         <div class="header">
             <h1>ENTRE EM CONTATO</h1>
@@ -146,6 +189,8 @@
             </div>
         </div>
     </div>
+
+    <!--Sessão rodapé-->
     <div id="sessao_rodape">
         <h3>CONHEÇA NOSSO TRABALHO NAS REDES</h3>
         <div class="imagem_redes">
@@ -158,3 +203,41 @@
     </div>
 </body>
 </html>
+
+<script>
+    function CalcularPrejuizo() {
+        let qtdToneladas = Number(input_capacidadeSilo.value) //variavel da  primeira input(capacidade do silos em toneladas).
+        let qtdSilos = Number(input_quantidadeSilos.value) //variavel da segunda input (quantidade de silos).
+        let ValorSacaSoja = Number(input_valorPorSacaSoja.value) //variavel da terceira input (valor por saca de soja).
+        
+        // 15% (0.15) equivale a média de soja perdida
+        let toneladasPerdidas = (qtdSilos * qtdToneladas) * 0.15
+
+        //Transforma toneladas em quilogramas (1 tonelada = 1000 kg) e divide pelo peso de uma saca de soja (60 unidade médida).
+        let qtdPerdaSacas = (toneladasPerdidas * 1000) / 60
+
+        //Valor do quanto é perdido 
+        let precoPerdido = ValorSacaSoja * qtdPerdaSacas
+
+        //Formata o preço perdido para uma string no formato monetário brasileiro.
+        let precoFormatado = precoPerdido.toLocaleString('pt-BR');
+
+        //"Math.round" Arredonda o resultado da divisão entre precoPerdido e ValorSacaSoja para o valor mais próximo. 
+        //(Por exemplo, se o resultado da divisão for 3.4, ele será arredondado para 3, e se for 3.6, será arredondado para 4)
+        let qtdPerdaSacasArredondado = Math.round(precoPerdido / ValorSacaSoja);
+
+        //Condição que diz "se a imagem estiver escondida(hidden), deve aparecer a resposta". 
+        if (desenhoCalculadora.hidden = true) {
+            show.innerHTML =
+            `
+            <span style = "color: #77BD1F">A média de perda de toneladas de soja devido à umidade é estimada em <b class = "result" style = "color: white">${toneladasPerdidas}</b> toneladas
+            <br><br>
+            O que equivale a uma quantidade de <b class = "result">${qtdPerdaSacasArredondado}</b> sacas de soja.
+            <br><br>
+            Representando um prejuízo significativo, calculado em aproximadamente <b class = "result">R$${precoFormatado}</b>, <b class = "result">15%</b> da lucro total. 
+            <br><br>
+            Recomendamos o uso de nossos sensores especializados, projetados para monitorar e controlar eficazmente a umidade e a temperatura do ar dentro de seus silos. Essa tecnologia pode ajudar a reduzir tais perdas e otimizar a gestão de seus estoques agrícolas.</span>
+        `
+        }
+    }
+</script>

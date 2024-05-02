@@ -81,8 +81,10 @@ body
     margin-top: 50%;
 }
 
-#btn_conheca_projeto
+.conteudo_home a
 {
+    text-decoration: none; 
+    color: #FFF;
     background-color: #A7C355;
     font-size: 16px;
     padding: 2.5% 15%;
@@ -94,7 +96,7 @@ body
     transition: transform 0.3s;
 }
 
-#btn_conheca_projeto:hover
+.conteudo_home a:hover
 {
     transform: scale(1.04);
 }
@@ -381,9 +383,17 @@ body
 }
 
 /* Função que torna o resultado branco */
-.result{
+.resultadoNegrito{
     color: #ffffff;
 }
+
+.resultadoCalculadora
+{
+    color: #77BD1F;
+    font-size: 15px;
+
+}
+
 
 .buttonCalculadora
 {

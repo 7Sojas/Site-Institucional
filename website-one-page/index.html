@@ -33,9 +33,9 @@
 
         <div class="conteudo_home">
             <img src="img_one_page/logoHome.png" alt="Logo7Sojas">
-            <div id="btn_conheca_projeto">
+            <a href="#sessao_sensores">
                 CONHEÇA O PROJETO
-            </div>
+            </a>
         </div>
     </div>
 
@@ -230,11 +230,11 @@
         if (desenhoCalculadora.hidden = true) {
             show.innerHTML =
             `
-            <span style = "color: #77BD1F">A média de perda de toneladas de soja devido à umidade é estimada em <b class = "result" style = "color: white">${toneladasPerdidas}</b> toneladas
+            <span class="resultadoCalculadora">A média de perda de toneladas de soja devido à umidade é estimada em <b class = "resultadoNegrito" style = "color: white">${toneladasPerdidas}</b> toneladas
             <br><br>
-            O que equivale a uma quantidade de <b class = "result">${qtdPerdaSacasArredondado}</b> sacas de soja.
+            O que equivale a uma quantidade de <b class = "resultadoNegrito">${qtdPerdaSacasArredondado}</b> sacas de soja.
             <br><br>
-            Representando um prejuízo significativo, calculado em aproximadamente <b class = "result">R$${precoFormatado}</b>, <b class = "result">15%</b> da lucro total. 
+            Representando um prejuízo significativo, calculado em aproximadamente <b class = "resultadoNegrito">R$${precoFormatado}</b>, <b class = "resultadoNegrito">15%</b> do lucro total. 
             <br><br>
             Recomendamos o uso de nossos sensores especializados, projetados para monitorar e controlar eficazmente a umidade e a temperatura do ar dentro de seus silos. Essa tecnologia pode ajudar a reduzir tais perdas e otimizar a gestão de seus estoques agrícolas.</span>
         `

@@ -43,8 +43,8 @@
                     E-mail: <br>
                     <input type="text" id="input_email">
                     <br><br>
-                    Nome de usuário: <br>
-                    <input type="text" id="input_usuario">
+                    Informe seu CPF: <br>
+                    <input type="text" id="input_cpf">
                     <br><br>
                     Crie uma senha: <br>
                     <input type="password" id="input_senha" onkeyup="instrucaoSenha()">
@@ -71,7 +71,7 @@
     function realizarCadastro() {
         let nome = input_nome.value
         let email = input_email.value
-        let ususario = input_usuario.value
+        let cpf = input_cpf.value
         let senha = input_senha.value
         let confirmacao = input_confirmarSenha.value
 

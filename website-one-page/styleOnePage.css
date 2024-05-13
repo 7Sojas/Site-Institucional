@@ -384,18 +384,42 @@ body
     display: none;
 }
 
-/* Função que torna o resultado branco */
-.resultadoNegrito{
-    color: #ffffff;
+.result-box {
+    background-color: rgba(9, 66, 13, 0.9);
+    opacity: 1;
+    border-radius: 10px; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    text-align: center; 
+    width: 75%; 
+    max-height: 100px;
+    animation: countUp 1.5s ease-in-out; /* Aplica a animação countUp com duração de 1.5 segundos e efeito de entrada e saída suave */
 }
 
-.resultadoCalculadora
+@keyframes countUp 
 {
-    color: #77BD1F;
-    font-size: 15px;
-
+    from 
+    {
+        opacity: 0; /* Começa com opacidade zero */
+        transform: translateY(50px); /* Move para baixo */
+    }
+    to 
+    {
+        opacity: 1; /* Termina com opacidade total */
+        transform: translateY(0); /* Não há deslocamento vertical */
+    }
 }
 
+.result-box h3 {
+    font-size: 16px; 
+    color: #fff; 
+    margin-bottom: 10px; 
+}
+
+.result-box p {
+    font-size: 16px; 
+    color: #fff; 
+}
 
 .buttonCalculadora
 {

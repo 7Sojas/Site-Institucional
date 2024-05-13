@@ -248,16 +248,26 @@
 
         //Condição que diz "se a imagem estiver escondida(hidden), deve aparecer a resposta". 
         if (desenhoCalculadora.hidden = true) {
-            show.innerHTML =
-            `
-            <span class="resultadoCalculadora">A média de perda de toneladas de soja devido à umidade é estimada em <b class = "resultadoNegrito" style = "color: white">${toneladasPerdidas}</b> toneladas
-            <br><br>
-            O que equivale a uma quantidade de <b class = "resultadoNegrito">${qtdPerdaSacasArredondado}</b> sacas de soja.
-            <br><br>
-            Representando um prejuízo significativo, calculado em aproximadamente <b class = "resultadoNegrito">R$${precoFormatado}</b>, <b class = "resultadoNegrito">15%</b> do lucro total. 
-            <br><br>
-            Recomendamos o uso de nossos sensores especializados, projetados para monitorar e controlar eficazmente a umidade e a temperatura do ar dentro de seus silos. Essa tecnologia pode ajudar a reduzir tais perdas e otimizar a gestão de seus estoques agrícolas.</span>
-        `
+            show.innerHTML = "";
+
+            // Adiciona os resultados em três caixas distintas
+            show.innerHTML +=
+            `<div class="result-box">
+                <h3>Média de perda de toneladas de soja:</h3>
+                <p>${toneladasPerdidas} toneladas</p>
+            </div>`;
+
+            show.innerHTML +=
+            `<div class="result-box">
+                <h3>Quantidade de sacas de soja:</h3>
+                <p>${qtdPerdaSacasArredondado} sacas</p>
+            </div>`;
+
+            show.innerHTML +=
+            `<div class="result-box">
+                <h3>Prejuízo significativo:</h3>
+                <p>R$${precoFormatado}, 15% do lucro total</p>
+            </div>`;
         }
     }
 </script>

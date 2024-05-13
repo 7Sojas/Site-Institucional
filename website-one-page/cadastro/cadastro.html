@@ -79,13 +79,13 @@
             alert('O nome deve começar com letra maiúscula e conter pelo menos um sobrenome.');
             return;
         } else {
-            if (nome.length < 5) {
+            if (nome.length < 2) {
                 alert('O nome deve ter pelo menos 5 caracteres.');
                 return;
             }
         }
 
-        if (!email.includes('@')) {
+        if (!email.includes('@') && !email.includes('.')) {
             alert('O e-mail deve conter o caractere "@".');
             return;
         }

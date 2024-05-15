@@ -15,10 +15,9 @@
 <body>
     <!--Sessão Home-->
     <div id="sessao_home">
-        <div class="container_navbar">
-            <ul class="navbar">
-                <img src="img_one_page/logoNavbar.png" alt="Logo7Sojas">
-                <div class="itens_navbar">
+            <ul class="navbar"> <!--Lista que possui os tópicos da navbar-->
+                <img src="img_one_page/logoNavbar.png" alt="Logo7Sojas"> <!--Logo 7Sojas-->
+                <div class="itens_navbar"> <!--Links para as sessões,cadastro e login-->
                     <li ><a href="#sessao_home">HOME</a></li>
                     <li><a href="#sessao_sobre_nos">SOBRE NÓS</a></li>
                     <li><a href="#sessao_sensores">SENSORES</a></li>
@@ -29,18 +28,20 @@
                     <li id="btn_cadastro"><a href="cadastro/cadastro.html">CADASTRO</a><img src="img_one_page/seta.png" alt="Seta"></li></li>
                 </div>
             </ul>
-        </div>
+       
 
-        <div class="conteudo_home">
-            <img src="img_one_page/logoHome.png" alt="Logo7Sojas">
-            <div id="btn_conheca_projeto">
+        <div class="conteudo_home"> <!--Conteúdo central da página-->
+            <img src="img_one_page/logoHome.png" alt="Logo7Sojas"> <!--Logo 7Sojas-->
+            <!--Botão conheça mais-->
+            <a href="#sessao_sensores"> 
                 CONHEÇA O PROJETO
-            </div>
+            </a>
         </div>
     </div>
 
     <!--Sessão sobre nós-->
     <div id="sessao_sobre_nos">
+        <!--Div principal-->
         <div class="conteudo_sobre_nos">
             <div class="texto_sobre_nos">
                 <h1>SOBRE NÓS</h1>
@@ -79,9 +80,11 @@
                 alcançar o máximo potencial da sua produção de soja.
             </p>
         </div>
+        <!--Primeira imagem-->
         <div class="primeiro_bloco">
             <img class="imagem_sensores" src="img_one_page/ARDUINO.png" alt="Imagem do arduino">
         </div>
+        <!--Segunda e terceira imagens-->
         <div class="segundo_bloco">
             <img class="imagem_sensores" src="img_one_page/DHT11.png" alt="imagem do DHT11">
             <img class="imagem_sensores" src="img_one_page/LM35.png" alt="Imagem do LM35">
@@ -90,12 +93,16 @@
 
     <!--Sessão vantagens-->
     <div id="sessao_vantagem">
+        <!--Titulo-->
         <div id="titulo">
             <h1>Por que escolher a</h1>
             <img src="img_one_page/logo.png" alt="Logo 7">
             <h1>?</h1>
         </div>
+
+        <!--Div que armazena os cards-->
         <div class="area_cards">
+
             <div class="card">
                 <h3>Sustentabilidade</h3>
                 <p class="texto_card">
@@ -113,6 +120,7 @@
                 </p>
                 <img class="img_card" src="img_one_page/seguranca.png" alt="">
             </div>
+
             <div class="card">
                 <h3>Eficiência</h3>
                 <p class="texto_card">
@@ -121,7 +129,12 @@
                 </p>
                 <img class="img_card" src="img_one_page/eficiencia.png" alt="">
             </div>
+<<<<<<< HEAD
         </div><br><br><br><br>
+=======
+
+        </div>
+>>>>>>> 1ac8eda0590ae0482e9fd3953fe233c3205c6f66
     </div>
 
     <!--Sessão calculadora-->
@@ -132,6 +145,7 @@
             <div class="topicos_esquerda"> <!-- Container da esquerda, contendo Inputs e botão -->
                 <img src="img_one_page/img_calculadora/Logo.png" class="logoCalculadora"> <!-- Logo 7Sojas -->
 
+                <!--Formulário-->
                 <div class="conteudoCalculadora">
                     Informe a capacidade do seu silo (em toneladas):
                     <input type="number" id="input_capacidadeSilo">
@@ -160,11 +174,17 @@
 
     <!--Sessão contato-->
     <div id="sessao_contato">
+
+        <!--Topo da sessão-->
         <div class="header">
             <h1>ENTRE EM CONTATO</h1>
-            <img src="img_one_page/logoNavbar.png" alt="Logo7Sojas">
+            <img src="img_one_page/logoNavbar.png" alt="Logo7Sojas"><!--Logo 7Sojas-->
         </div>
+        
+        <!--Formulário-->
         <div class="formulario">
+
+            <!--Campos da esquerda-->
             <div class="item_esquerda">
                 <p>Você pode nos contatar via e-mail <a>7sojas@gmail.com</a></p>
                 <p>ou telefone <a>(11) 92414-3814</a></p> 
@@ -181,6 +201,8 @@
                     <input id="input_telefone" class="input_telefone" type="number">
                 </div>
             </div>
+
+            <!--Campos da direita-->
             <div class="item_direita">
                 <p>Como podemos ajudar?</p>
                 <textarea id="input_mensagem" cols="30" rows="10"></textarea>
@@ -192,6 +214,8 @@
     <!--Sessão rodapé-->
     <div id="sessao_rodape">
         <h3>CONHEÇA NOSSO TRABALHO NAS REDES</h3>
+
+        <!--Logos das redes sociais-->
         <div class="imagem_redes">
             <img src="img_one_page/logoLinkdin.png" alt="Logo Linkdin">
             <img src="img_one_page/logoFacebook.png" alt="Logo Facebook">
@@ -227,16 +251,26 @@
 
         //Condição que diz "se a imagem estiver escondida(hidden), deve aparecer a resposta". 
         if (desenhoCalculadora.hidden = true) {
-            show.innerHTML =
-            `
-            <span style = "color: #77BD1F">A média de perda de toneladas de soja devido à umidade é estimada em <b class = "result" style = "color: white">${toneladasPerdidas}</b> toneladas
-            <br><br>
-            O que equivale a uma quantidade de <b class = "result">${qtdPerdaSacasArredondado}</b> sacas de soja.
-            <br><br>
-            Representando um prejuízo significativo, calculado em aproximadamente <b class = "result">R$${precoFormatado}</b>, <b class = "result">15%</b> da lucro total. 
-            <br><br>
-            Recomendamos o uso de nossos sensores especializados, projetados para monitorar e controlar eficazmente a umidade e a temperatura do ar dentro de seus silos. Essa tecnologia pode ajudar a reduzir tais perdas e otimizar a gestão de seus estoques agrícolas.</span>
-        `
+            show.innerHTML = "";
+
+            // Adiciona os resultados em três caixas distintas
+            show.innerHTML +=
+            `<div class="result-box">
+                <h3>Média de perda de toneladas de soja:</h3>
+                <p>${toneladasPerdidas} toneladas</p>
+            </div>`;
+
+            show.innerHTML +=
+            `<div class="result-box">
+                <h3>Quantidade de sacas de soja:</h3>
+                <p>${qtdPerdaSacasArredondado} sacas</p>
+            </div>`;
+
+            show.innerHTML +=
+            `<div class="result-box">
+                <h3>Prejuízo significativo:</h3>
+                <p>R$${precoFormatado}, 15% do lucro total</p>
+            </div>`;
         }
     }
 </script>

@@ -190,9 +190,49 @@ main input:focus {
 
 .graficos {
     display: flex;
+    flex-direction: row;
     gap: 20px 15px;
 
     flex-wrap: wrap;
+}
+
+.kpi-index {
+    margin-bottom: 1rem;
+    flex: 100px;
+}
+
+.kpi-index div {
+    width: 300px;
+}
+
+.kpi-content {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+
+    font-size: .9rem;
+    color: rgba(255, 255, 255, 0.738);
+    
+    transition: .2s;
+}
+
+.kpi-graficos-cards {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #05170d;
+}
+
+.kpi-graficos-cards div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.kpi-graficos-cards p {
+    text-align: center;
+    font-size: 3rem;
+    margin: 1rem 0;
 }
 
 .graficos-cards {
@@ -202,27 +242,30 @@ main input:focus {
     background-color: #05170d;
     border-radius: 10px;
     
-    width: 300px;
-    height: 450px;
     transition: .2s;
+
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+
 }
 
 .graficos a {
     width: 100%;
     padding: 0;
-    margin-top: 2rem;
 }
 
 
 .graficos-cards:nth-child(1) {
+    padding: 1rem;
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: row;
     gap: 10px;
 
     height: 100%;
     flex: 1 1 100%;
-
 
 }
 
@@ -231,57 +274,10 @@ main input:focus {
 }
 
 
-.graficos-cards:nth-child(2) {
-    width: 800px;
-    flex-direction: column;
-
-    display: flex;
-}
-
 canva {
     width: 100% !important;
-    height: 100% m !important;
+    height: 100% !important;
 }
-
-.graficos-cards:nth-child(3) {
-    text-align: center;
-    flex: 1;
-}
-
-.graficos-cards:nth-child(3) > div {
-    padding: 2rem;
-    font-size: 3rem;
-    text-align: center;
-    height: 80%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-
-.graficos-cards:nth-child(4) > div {
-    font-size: 3rem;
-    text-align: center;
-    height: 90%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-
-.graficos-cards:nth-child(4) {
-    flex: 1;
-    text-align: center;
-}
-
-.graficos-cards:nth-child(5) {
-    width: 800px;
-}
-
-
-
 
 .graficos-cards:hover {
     transition: .2s;

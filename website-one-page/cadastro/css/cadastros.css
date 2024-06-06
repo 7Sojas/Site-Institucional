@@ -1,3 +1,128 @@
 body {
-    background-color: #09420D;
+    background-color: #15751b;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 0 0 0 ;
+
+    justify-content: center;
+
+ background-image: url("../src/fundoSoja.png");
+    background-size: cover;
+    height: 100%;
+    background-position: top;
+    
+
+}
+
+#header{
+    padding: 30px 0 30px 30px;
+    width: 100%;
+
+}
+
+
+#cadastro{
+
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+
+padding: 0;
+
+background-color: black;
+color: rgb(40, 157, 67);
+
+border-radius: 20px;
+ align-items: center;
+ justify-content: center;
+
+}
+
+#propriedade{
+
+    padding: 20px 0 50px 10px;
+    font-weight: bold;
+font-size: 27px;
+
+}
+
+
+#campos{
+    display: flex;
+    flex-direction: row;
+    width: 440px;
+    justify-content: space-between ;
+}
+
+#campos div{
+    display: flex;
+    flex-direction: row;
+    width: 110px;
+    justify-content: space-between ; 
+}
+
+input{
+background-color: #289d43;
+border: none;
+border-radius: 8px;
+height: 25px;
+}
+
+.input_g{
+width:300px ;
+}
+
+.input_m{
+ width: 120px ;  
+}
+
+.input_p{
+ width: 60px; 
+}
+
+
+#cadastro h1{
+font-size: 46px;
+    text-align: center;
+
+}
+
+button{
+ border: none;
+border-radius: 20px;
+font-weight: bold
+
+
+}
+
+#bVoltar{
+    background-color: black;
+    border-radius: 100%;
+width: 80px ;
+height: 80px ;
+font-size: 16px;
+}
+
+#bCadastrar{
+    background-color: #339249;
+    color: #062b09;
+font-size: 20px;
+    width: 200px ;
+    height:50px ;
+
+}
+
+
+
+#silo{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    font-weight: bold;
+font-size: 20px;
+
 }

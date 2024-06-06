@@ -8,26 +8,27 @@
 </head>
 <body>
     <div id="header">
-        <button onclick="voltar()">VOLTAR</button>
-
+        <button id="bVoltar" onclick="voltar()"><img src="./src/seta.png" width="65px"></button>
     </div>
 
-    <div id="cadastro">
+    <div id="cadastro" style="width:700px ; height: 500px;">
       <h1>Cadastre seu Silo</h1>
-
       <div id="silo">
-        Logradouro
-        <input type="text" id="input_logradouro" />
-        Capacidade:
-
+        Logradouro 
+        <input type="text" id="input_logradouro"  class="input_g"/> <br><br>
+        Capacidade
+<br><br>
         Mín
-        <input type="number" id="input_min" />
+        <input type="number" id="input_min" class="input_p" />
         Max
-        <input type="number" id="input_max" />
+        <input type="number" id="input_max" class="input_p" />
+        <br><br><br>
+
       </div>
    
+      <br><br><br>
 
-        <button onclick="cadastrar()">Cadastrar</button>
+        <button id="bCadastrar" onclick="cadastrar()">Cadastrar</button>
 
     </div>
 </body>

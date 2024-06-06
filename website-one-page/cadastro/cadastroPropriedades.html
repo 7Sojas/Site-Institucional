@@ -3,34 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/cadastros.css">
+    <link rel="stylesheet" href="./css/cadastros.css" />
     <title>Document</title>
   </head>
   <body>
     <div id="header">
-
-        <button onclick="voltar()">VOLTAR</button>
-
+      <button id="bVoltar" onclick="voltar()"><img src="./src/seta.png" width="65px"></button>
     </div>
-
-    <div id="cadastro">
+<div id="sessao">
+    <div id="cadastro" style="width: 800px; height: 500px">
       <h1>Cadastre sua Propriedade</h1>
-
+<div id="propriedade">
       <div id="endereco">
-        Logradouro
-        <input type="text" id="input_logradouro" />
-        Número
-        <input type="number" id="input_numero" />
-        CEP
-        <input type="number" id="input_cep" />
+        <div id="campos">
+          <span>Logradouro</span>
+          <div>
+            <span>Nº</span>
+            <span>CEP</span>
+          </div>
+        </div>
+        <br />
+        <input type="text" id="input_logradouro" class="input_g" />
+        <input type="number" id="input_numero" class="input_p" />
+        <input type="number" id="input_cep" class="input_m" />
+        <br /><br />
       </div>
       <div id="propriedade">
         Nome da Propriedade
-        <input type="text" id="input_nome" />
-
-        <button onclick="cadastrar()">Cadastrar</button>
-
+        <input type="text" id="input_nome" class="input_g" />
+        <br /><br /><br />
+        <button id="bCadastrar" onclick="cadastrar()">Cadastrar</button>
       </div>
     </div>
+  </div>
+</div>
   </body>
 </html>

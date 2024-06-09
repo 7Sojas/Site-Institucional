@@ -17,7 +17,7 @@ body {
 }
 
 #header{
-    padding: 30px 0 30px 30px;
+    padding: 18px 0 0 30px;
     width: 100%;
 
 }
@@ -29,7 +29,6 @@ display: flex;
 flex-direction: row;
 flex-wrap: wrap;
 
-padding: 0;
 
 background-color: black;
 color: rgb(40, 157, 67);
@@ -37,6 +36,10 @@ color: rgb(40, 157, 67);
 border-radius: 20px;
  align-items: center;
  justify-content: center;
+align-content: center;
+text-align: center;
+
+padding: 10px 20px 10px 20px;
 
 }
 
@@ -52,15 +55,27 @@ font-size: 27px;
 #campos{
     display: flex;
     flex-direction: row;
-    width: 440px;
+    width: 450px;
     justify-content: space-between ;
 }
 
 #campos div{
     display: flex;
     flex-direction: row;
-    width: 110px;
+    width: 10px;
     justify-content: space-between ; 
+}
+
+#dados{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 10px;
+    
+    }
+
+#dados div{
+    border: 2px solid #289d43;
 }
 
 input{
@@ -83,11 +98,7 @@ width:300px ;
 }
 
 
-#cadastro h1{
-font-size: 46px;
-    text-align: center;
 
-}
 
 button{
  border: none;
@@ -114,15 +125,23 @@ font-size: 20px;
 
 }
 
-
+/*Cadastro dos Silos*/
 
 #silo{
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
 
     font-weight: bold;
-font-size: 20px;
+font-size: 30px;
 
 }
+
+#input_id::placeholder{
+color: rgb(37, 36, 36);
+font-weight: bold;
+font-size: 13px;
+
+}
+
+
+
+ 

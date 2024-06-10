@@ -156,3 +156,13 @@ body a {
 #p_instrucao {
     display: none;
 }
+
+.alerta_erro
+{
+    color: #FFF;
+}
+
+.card_erro
+{
+    display: none;
+}

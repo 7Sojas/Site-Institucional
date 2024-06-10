@@ -4,21 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="estiloTelaPropriedade.css">
     <link rel="icon" type="image/png" href="../img_one_page/img_calculadora/soja.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
     <title>Dashboard - HOME</title>
 </head>
 
-<body>
+<body onload="carregarPropriedades()">
     <div class="bolha"></div>
     <div class="bolha2"></div>
 
     <aside class="menu">
 
-        <img src="imagens-public/logoNavbar.png" alt="Logo 7sojas">
+        <img src="src/logo.png" alt="Logo 7sojas">
 
         <nav>
             <ul>
@@ -96,66 +99,89 @@
                 <path d="m21 21-4.3-4.3" />
             </svg>
 
-            <input placeholder="Pesquisar Propriedade.." id="iptSearch" onkeyup="pesquisarPropriedade()" type="search" />
+            <input placeholder="Pesquisar Propriedade.." id="iptSearch" onkeyup="pesquisarPropriedade()"
+                type="search" />
         </div>
 
         <div class="kpi-content kpi-index">
-            <div class="kpi-graficos-cards">
+            <div class="kpi-graficos-cards" style="width: 350px;">
                 <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="bold" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-                    <h3>Propriedade em estado crítico </h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="bold"
+                        stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-triangle-alert">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                        <path d="M12 9v4" />
+                        <path d="M12 17h.01" />
+                    </svg>
+                    <h3>Propriedades em estado crítico</h3>
                 </div>
-                <p> 2/8 </p>
+                <p> 2/<span class="qtd_propriedades"></span></p>
             </div>
             <div class="kpi-graficos-cards">
                 <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="orange" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="orange" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-alert">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" x2="12" y1="8" y2="12" />
+                        <line x1="12" x2="12.01" y1="16" y2="16" />
+                    </svg>
                     <h3>Propriedades em alerta</h3>
                 </div>
-                <p> 2/8 </p>
+                <p> 2/<span class="qtd_propriedades"></span></p>
+
             </div>
         </div>
-    <h2>Propriedades</h2>
+        <h2>Propriedades</h2>
 
-    <div class="card-content" id="propriedades-container">
-        <!-- As propriedades serão carregadas aqui -->
-    </div>
+        <div class="card-content" id="propriedades-container">
+            <!-- As propriedades serão carregadas aqui -->
+        </div>
 
 </body>
 
 </html>
 
 <script>
-    async function carregarPropriedades() {
+
+    function carregarPropriedades() {
+
         const usuarioId = localStorage.getItem('IdUsuario');
-        console.log(usuarioId);
 
-        <!-- if (!usuarioId) {
-            alert('Usuário não está logado.');
-            window.location.href = '/public/login.html';
-            return;
-        } -->
+        fetch("/propriedade/1/propriedades")
+            .then(data => data.json())
+            .then(response => {
+                console.log(response)
 
-        const response = await fetch(`/propriedades/${usuarioId}/propriedades`);
-        const propriedades = await response.json();
+                const container = document.getElementById('propriedades-container');
+                container.innerHTML = '';
 
-        const container = document.getElementById('propriedades-container');
-        container.innerHTML = '';
+                document.querySelectorAll('.qtd_propriedades')[0].innerHTML = response.length 
+                document.querySelectorAll('.qtd_propriedades')[1].innerHTML = response.length 
 
-        propriedades.forEach(propriedade => {
-            const card = document.createElement('a');
-            card.href = 'propriedade.html';
-            card.innerHTML = `
-                <div class="card">
-                    <img src="src/planta.png" alt="">
-                    <li>
-                        <h3>${propriedade.nome}</h3>
-                    </li>
-                </div>
-            `;
-            container.appendChild(card);
-        });
+                response.forEach(item => {
+
+
+                    const card = document.createElement('a');
+                    card.href = `index.html?id=${item.id}`;
+                    card.innerHTML = `
+                        <div class="card">
+                            <img src="src/planta.png" alt="">
+                            <li>
+                                <h3>${item.nome}</h3>
+                            </li>
+                        </div>
+                    `;
+                    container.appendChild(card);
+
+
+
+
+
+                })
+
+            })
+
     }
 
-    document.addEventListener('DOMContentLoaded', carregarPropriedades);
 </script>

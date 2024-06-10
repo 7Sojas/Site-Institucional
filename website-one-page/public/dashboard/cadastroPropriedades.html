@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/cadastros.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../img_one_page/img_calculadora/soja.ico"
+    />
+    <title>Cadastro de Propriedade</title>
+  </head>
+  <body>
+    <div id="header">
+      <button id="bVoltar" onclick="voltar()">
+        <img src="src/seta.png" width="65px" />
+      </button>
+    </div>
+    <div id="sessao">
+      <div id="cadastro" style="width: 900px; height: 700px">
+        <h1 style="font-size: 40px;">Cadastre sua Propriedade</h1>
+        <div id="propriedade">
+          <div id="endereco">
+            <div class="campos" style="  width: 440px;">
+              <span>Logradouro</span>
+              <div>
+                <span>Nº</span>
+                <span>CEP</span>
+              </div>
+            </div>
+            <br />
+
+            <input type="text" id="input_logradouro" class="input_g" />
+            <input type="number" id="input_numero" class="input_p" />
+            <input type="number" id="input_cep" class="input_m" />
+            <br /><br />
+          </div>
+          <div class="campos" style="width: 600px;">
+            Nome da Propriedade
+            <input type="text" id="input_nome" class="input_g" />
+            <br /><br />
+            
+          </div>
+          <span style="font-size: 17px; text-align: center;">*Nos campos abaixo devem ser inseridos quais os intervalos de temperatura e umidade 
+            que você estabelece estável dentro dos silos de armazenamento de sua propriedade. </span>
+          <div id="dados">
+           
+            <div>
+              TEMPERATURA
+              <br /><br />
+
+              mín max
+              <br />
+              <input type="number" id="temp_input_min" class="input_p" />
+
+              <input type="number" id="temp_input_max" class="input_p" />
+              <br /><br />
+            </div>
+
+            <div>
+              UMIDADE
+              <br /><br />
+              mín max
+              <br />
+              <input type="number" id="umi_input_min" class="input_p" />
+
+              <input type="number" id="umi_input_max" class="input_p" />
+            
+              <br /><br />
+
+            </div>
+            
+          </div>
+          <br /><br />
+            <br /><br /><br />
+           
+        </div>
+       
+              
+            <button id="bCadastrar" onclick="cadastrar()">Cadastrar</button>
+        
+      </div>
+
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>
+<script>
+  function cadastrar() 
+  {
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var logradouroVar = input_logradouro.value;
+    var numeroVar = input_numero.value;
+    var cepVar = input_cep.value;
+    var nomeVar = input_nome.value;
+    var tempMinVar = temp_input_min.value;
+    var tempMaxVar = temp_input_max.value;
+    var umiMinVar = umi_input_min.value;
+    var umiMaxVar = umi_input_max.value;
+
+    
+    if 
+    (
+      logradouroVar == "" ||
+      numeroVar == "" ||
+      cepVar == "" || 
+      nomeVar == "" ||
+      tempMinVar == ""||
+      tempMaxVar == ""||
+      umiMaxVar == ""||
+      umiMinVar == ""
+    ) 
+    {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+      "Por favor preencha todos os campos para continuar";
+      return false;
+    } 
+    else 
+    {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if (logradouroVar.length <= 1 || !logradouroVar.includes(" ")) 
+    {
+        mostrarErro("Por favor, forneça seu logradouro completo!");
+        return false;
+    }
+    
+    // Enviando o valor da nova input
+    fetch("/propriedade/cadastrar", 
+    {
+      method: "POST",
+      headers: 
+      {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        logradouroServer: logradouroVar,
+        numeroServer: numeroVar,
+        cepServer: cepVar,
+        nomeServer: nomeVar,
+        tempMinServer: tempMinVar,
+        tempMaxServer: tempMaxVar, 
+        umiMaxServer: umiMaxVar,
+        umiMinServer: umiMinVar
+      }),
+    })
+    .then(function (resposta) {
+    console.log("resposta: ", resposta);
+    
+    if (resposta.ok) 
+    {
+      cardErro.style.display = "block";
+    
+      mensagem_erro.innerHTML =
+        "Cadastro realizado com sucesso!";
+    
+      setTimeout(() => {
+        window.location = "login.html";
+      }, "2000");
+    
+      limparFormulario();
+    } else {
+      throw "Houve um erro ao tentar realizar o cadastro do silo!";
+    }
+    })
+    .catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+    });
+    
+    return false;
+  }
+  
+  function sumirMensagem() {
+  cardErro.style.display = "none";
+  }
+  
+  function instrucaoSenha(){
+  p_instrucao.style.display = "block";
+  }
+  
+  
+  </script>

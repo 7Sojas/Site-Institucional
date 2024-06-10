@@ -1,0 +1,168 @@
+body {
+    background: url('./src/fechar-os-detalhes-da-textura-do-filme.jpg');
+    background-size: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+
+.container {
+    display: flex;
+    margin: auto;
+    width: 80%;
+    height: 80px; 
+    justify-content: space-between;
+    color: black;
+}
+
+.container img {
+    height: 80px;
+    width: 150px;
+}
+
+
+body a {
+    color: white;
+}
+
+
+.nav-bar {
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    list-style-type: none;
+    font-size: 20px;
+    height: 30px;
+}
+
+.caixa-login-maior {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.caixa-login{
+    font-size: 15px;
+    color: white;
+    font-style: inherit;
+    width: 700px;
+    height: 655px;
+    background-color: rgb(3, 3, 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    margin-right: 0;
+    margin-top: -80px;
+    margin-bottom: 0;
+}
+
+.caixa-login input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #575252;
+    color: #FFF;
+    /* Estiliza somente a borda inferior para que fique como uma linha */
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    height: 15px;
+}
+
+.caixa-login button {
+    color: white;
+    background-color: #4bff1e;
+    width: 180px;
+    height: 40px;
+    border-color: black;
+    border-radius: 8px;
+}
+
+.caixa-login-maior img {
+    border-radius: 30px;
+    margin-top: -50px;
+    width: 600px;
+    height: 600px;
+    margin-left: 0px;
+    max-width: 650px;
+    max-height: 650px;
+}
+
+.caixa-cadastro-maior {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.caixa-cadastro {
+    font-size: 13px;
+    color: white;
+    font-style: inherit;
+    width: 700px;
+    height: 655px;
+    background-color: rgb(3, 3, 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    margin-right: 0;
+    margin-top: -80px;
+    margin-bottom: 0;
+}
+
+.caixa-cadastro input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #575252;
+    color: #FFF;
+    /* Estiliza somente a borda inferior para que fique como uma linha */
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    height: 5px;
+}
+
+.caixa-cadastro button {
+    color: white;
+    background-color: #4bff1e;
+    width: 180px;
+    height: 40px;
+    border-color: black;
+    border-radius: 8px;
+}
+
+.caixa-cadastro-maior img {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    margin-top: -30px;
+    max-width: 550px;
+    max-height: 550px;
+}
+
+#p_instrucao {
+    display: none;
+}
+
+.alerta_erro
+{
+    color: #FFF;
+}
+
+.card_erro
+{
+    display: none;
+}

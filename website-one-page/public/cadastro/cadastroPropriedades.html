@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/cadastros.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../img_one_page/img_calculadora/soja.ico"
+    />
+    <title>Cadastro de Propriedade</title>
+  </head>
+  <body>
+    <div id="header">
+      <button id="bVoltar" onclick="voltar()">
+        <img src="./src/seta.png" width="65px" />
+      </button>
+    </div>
+    <div id="sessao">
+      <div id="cadastro" style="width: 900px; height: 700px">
+        <h1 style="font-size: 40px;">Cadastre sua Propriedade</h1>
+        <div id="propriedade">
+          <div id="endereco">
+            <div class="campos" style="  width: 440px;">
+              <span>Logradouro</span>
+              <div>
+                <span>Nº</span>
+                <span>CEP</span>
+              </div>
+            </div>
+            <br />
+
+            <input type="text" id="input_logradouro" class="input_g" />
+            <input type="number" id="input_numero" class="input_p" />
+            <input type="number" id="input_cep" class="input_m" />
+            <br /><br />
+          </div>
+          <div class="campos" style="width: 600px;">
+            Nome da Propriedade
+            <input type="text" id="input_nome" class="input_g" />
+            <br /><br />
+            
+          </div>
+          <span style="font-size: 17px; text-align: center;">*Nos campos abaixo devem ser inseridos quais os intervalos de temperatura e umidade 
+            que você estabelece estável dentro dos silos de armazenamento de sua propriedade. </span>
+          <div id="dados">
+           
+            <div>
+              TEMPERATURA
+              <br /><br />
+
+              mín max
+              <br />
+              <input type="number" id="input_min" class="input_p" />
+
+              <input type="number" id="input_max" class="input_p" />
+              <br /><br />
+            </div>
+
+            <div>
+              UMIDADE
+              <br /><br />
+              mín max
+              <br />
+              <input type="number" id="input_min" class="input_p" />
+
+              <input type="number" id="input_max" class="input_p" />
+            
+              <br /><br />
+
+            </div>
+            
+          </div>
+          <br /><br />
+            <br /><br /><br />
+           
+        </div>
+       
+              
+            <button id="bCadastrar" onclick="cadastrar()">Cadastrar</button>
+        
+      </div>
+    </div>
+  </body>
+</html>

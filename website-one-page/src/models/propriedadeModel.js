@@ -20,9 +20,14 @@ function cadastrar(logradouro,numero,cep,nome)
     return database.executar(instrucaoSql2,instrucaoSql1);
 }
 
+function buscarPropriedadesPorUsuario(idUsuario) {
+  var instrucaoSql = `SELECT * FROM propriedade WHERE fkUsuario = '${idUsuario}'`;
+  return database.executar(instrucaoSql);
+}
 
 
 module.exports = 
 {
+    buscarPropriedadesPorUsuario,
     cadastrar
 }

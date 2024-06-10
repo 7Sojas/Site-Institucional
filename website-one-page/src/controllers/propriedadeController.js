@@ -50,8 +50,22 @@ function cadastrar(req,res)
     }
 }
 
+function getPropriedadesByUsuario(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+  propriedadeModel.buscarPropriedadesPorUsuario(idUsuario)
+    .then(resultado => {
+      res.status(200).json(resultado);
+    })
+    .catch(erro => {
+      console.log(erro);
+      res.status(500).json(erro);
+    });
+}
+
 
 module.exports = 
 {
+    getPropriedadesByUsuario,
     cadastrar
 }

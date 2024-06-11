@@ -48,116 +48,95 @@
        
               
             <button id="bCadastrar" onclick="cadastrar()">Cadastrar</button>
-        
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+              </div>
+            </div>
       </div>
-
-      <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
-        </div>
-      </div>
-
     </div>
 
   </body>
 </html>
+
 <script>
-  function cadastrar() 
-  {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
+  function cadastrar() {
+
     var logradouroVar = input_logradouro.value;
     var numeroVar = input_numero.value;
     var cepVar = input_cep.value;
-    var nomeVar = input_nome.value;
-    var tempMinVar = temp_input_min.value;
-    var tempMaxVar = temp_input_max.value;
-    var umiMinVar = umi_input_min.value;
-    var umiMaxVar = umi_input_max.value;
 
-    
-    if 
-    (
-      logradouroVar == "" ||
-      numeroVar == "" ||
-      cepVar == "" || 
-      nomeVar == "" ||
-      tempMinVar == ""||
-      tempMaxVar == ""||
-      umiMaxVar == ""||
-      umiMinVar == ""
-    ) 
+    if (logradouroVar == "" || numeroVar == "" || cepVar == "") 
     {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-      "Por favor preencha todos os campos para continuar";
-      return false;
-    } 
-    else 
-    {
-      setInterval(sumirMensagem, 5000);
+        mostrarErro("Preencha todos os campos para continuar");
+        return false;
     }
 
     if (logradouroVar.length <= 1 || !logradouroVar.includes(" ")) 
     {
-        mostrarErro("Por favor, forneça seu logradouro completo!");
-        return false;
-    }
-    
-    // Enviando o valor da nova input
+      mostrarErro("Por favor, forneça seu logradouro completo!");
+      return false;
+    } 
+    else if (cepVar.length != 8) 
+    {
+      mostrarErro("CEP inválido!");
+      return false;
+    } 
+
     fetch("/propriedade/cadastrar", 
     {
-      method: "POST",
-      headers: 
-      {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        logradouroServer: logradouroVar,
-        numeroServer: numeroVar,
-        cepServer: cepVar,
-        nomeServer: nomeVar,
-        tempMinServer: tempMinVar,
-        tempMaxServer: tempMaxVar, 
-        umiMaxServer: umiMaxVar,
-        umiMinServer: umiMinVar
-      }),
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify
+        ({
+            logradouroServer: logradouroVar,
+            numeroServer: numeroVar,
+            cepServer: cepVar,
+        }),
     })
-    .then(function (resposta) {
-    console.log("resposta: ", resposta);
-    
-    if (resposta.ok) 
+    .then(function (resposta) 
     {
-      cardErro.style.display = "block";
-    
-      mensagem_erro.innerHTML =
-        "Cadastro realizado com sucesso!";
-    
-      setTimeout(() => {
-        window.location = "login.html";
-      }, "2000");
-    
-      limparFormulario();
-    } else {
-      throw "Houve um erro ao tentar realizar o cadastro do silo!";
-    }
+        if (resposta.ok) {
+            mostrarSucesso("Cadastro realizado com sucesso! Redirecionando para sua dashboard...");
+            setTimeout(() => 
+            {
+              console.log("Cadastrou!");
+                // window.location = "login.html";
+            }, 2000);
+        } else if (resposta.status == 409) 
+        {
+            return resposta.text().then(texto => { throw new Error(texto); });
+        } else 
+        {
+            throw new Error("Houve um erro ao tentar realizar o cadastro!");
+        }
     })
-    .catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-    });
-    
+    .catch(function (erro) 
+    {
+        mostrarErro(erro.message);
+    })
     return false;
-  }
-  
-  function sumirMensagem() {
-  cardErro.style.display = "none";
-  }
-  
-  function instrucaoSenha(){
-  p_instrucao.style.display = "block";
-  }
-  
-  
-  </script>
+}
+
+function mostrarErro(mensagem) 
+{
+    cardErro.style.display = "block";
+    mensagem_erro.innerHTML = mensagem;
+    setTimeout(sumirMensagem, 5000);
+}
+
+function mostrarSucesso(mensagem) 
+{
+    cardErro.style.display = "block";
+    mensagem_erro.innerHTML = mensagem;
+    setTimeout(sumirMensagem, 5000);
+}
+
+function sumirMensagem() 
+{
+    cardErro.style.display = "none";
+}
+
+</script>

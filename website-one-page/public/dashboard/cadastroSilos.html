@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cadastros.css">
+    <link rel="stylesheet" href="./css/cadastros.css">
     <link rel="icon" type="image/png" href="../img_one_page/img_calculadora/soja.ico">
     <title>Cadastro de Silo</title>
 </head>
@@ -12,16 +12,59 @@
         <button id="bVoltar" onclick="voltar()"><img src="src/seta.png" width="65px"></button>
     </div>
 
-    <div id="cadastro" style="width:700px ; height: 480px;">
+    <div id="cadastro" style="width:820px ; height: 680px;">
       <h1 style="font-size: 46px;">Cadastre seu Silo</h1>
       <div id="silo">
-        <br><br>
-        Identificação: 
-        <input type="text" id="input_id" placeholder="   ex: SILO 1 "  class="input_g"/> <br><br>
-      
-    <br><br>
-        <button id="bCadastrar" onclick="cadastrar()">Cadastrar</button>
+        <br>
+        <div id="info">
+          <div>
+        <span> Nome:</span>
+        <input type="text" id="input_id" placeholder="   ex: SILO 1 "  class="input_m"/> 
       </div>
+      <div>
+        <span> Tipo de silo</span>
+        <select id="select_tipo">
+          <option value="vazio"></option>
+        <option value="metalico">Metálico</option>
+        <option value="concreto">Concreto</option>
+      </select>
+    </div>
+    </div>
+<br>
+      <span style="font-size: 17px; text-align: center;">*Nos campos abaixo devem ser inseridos quais os intervalos de temperatura e umidade 
+        que você estabelece estável dentro dos silos de armazenamento de sua propriedade. </span>
+      <div id="dados">
+           
+        <div>
+          TEMPERATURA
+          <br /><br />
+
+          mín max
+          <br />
+          <input type="number" id="temp_input_min" class="input_p" />
+
+          <input type="number" id="temp_input_max" class="input_p" />
+          <br /><br />
+        </div>
+
+        <div>
+          UMIDADE
+          <br /><br />
+          mín max
+          <br />
+          <input type="number" id="umi_input_min" class="input_p" />
+
+          <input type="number" id="umi_input_max" class="input_p" />
+        
+          <br /><br />
+
+        </div>
+      </div>
+      <br><br> <br><br>
+
+    <br><br>
+      </div>
+      <button id="bCadastrar" onclick="cadastrar()">Cadastrar</button>
 
     </div>
     

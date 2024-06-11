@@ -1,146 +1,140 @@
 body {
-    background-color: #15751b;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    padding:0 ;
-
-    justify-content: center;
-
- background-image: url("../src/fundoSoja.png");
-    background-size: cover;
-    height: 100%;
-    background-position: top;
-    
-
-}
-
-#header{
-    padding: 18px 0 0 30px;
-    width: 100%;
-
-}
-
-
-#cadastro{
-
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-
-
-background-color: black;
-color: rgb(40, 157, 67);
-opacity: 0.95;
-border-radius: 20px;
- align-items: flex-start;
- justify-content: center;
-align-content: center;
-
-padding: 0 30px 0 30px;
-
-}
-
-#propriedade{
-
-    padding: 20px 0 50px 10px;
-    font-weight: bold;
-font-size: 27px;
-
-}
-
-
-
-
-.campos{
-    display: flex;
-    flex-direction:row;
-    justify-content: space-between ;
-}
-
-.campos div{
+  background-color: #15751b;
   display: flex;
-    width: 110px;
-    justify-content: space-between ; 
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0;
+
+  justify-content: center;
+
+  background-image: url("../src/fundoSoja.png");
+  background-size: cover;
+  height: 100%;
+  background-position: top;
 }
 
-#dados{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 10px;
-    text-align: center;
-
-    }
-
-#dados div{
-    border: 2px solid #289d43;
+#header {
+  padding: 18px 0 0 30px;
+  width: 100%;
 }
 
-input{
-background-color: #289d43;
-border: none;
-border-radius: 8px;
-height: 25px;
+#cadastro {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  background-color: black;
+  color: rgb(40, 157, 67);
+  opacity: 0.95;
+  border-radius: 20px;
+  align-items: flex-start;
+  justify-content: center;
+  align-content: center;
+
+  padding: 0 30px 0 30px;
 }
 
-.input_g{
-width:300px ;
+#propriedade {
+  padding: 20px 0 50px 10px;
+  font-weight: bold;
+  font-size: 27px;
 }
 
-.input_m{
- width: 120px ;  
+.campos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.input_p{
- width: 60px; 
+.campos div {
+  display: flex;
+  width: 110px;
+  justify-content: space-between;
 }
 
-
-
-
-button{
- border: none;
-border-radius: 20px;
-font-weight: bold;
-
+#dados {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 10px;
+  text-align: center;
 }
 
-#bVoltar{
-    background-color: black;
-    border-radius: 100%;
-width: 80px ;
-height: 80px ;
-font-size: 16px;
+#dados div {
+  border: 2px solid #289d43;
 }
 
-#bCadastrar{
-    background-color: #339249;
-    color: #062b09;
-font-size: 20px;
-    width: 200px ;
-    height:50px ;
+input {
+  background-color: #289d43;
+  border: none;
+  border-radius: 8px;
+  height: 25px;
+}
 
+.input_g {
+  width: 300px;
+}
+
+.input_m {
+  width: 120px;
+}
+
+.input_p {
+  width: 60px;
+}
+
+button {
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+#bVoltar {
+  background-color: black;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  font-size: 16px;
+}
+
+#bCadastrar {
+  background-color: #339249;
+  color: #062b09;
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
 }
 
 /*Cadastro dos Silos*/
 
-#silo{
-
-
-    font-weight: bold;
-font-size: 30px;
-
+#silo {
+  font-weight: bold;
+  font-size: 30px;
 }
 
-#input_id::placeholder{
-color: rgb(37, 36, 36);
-font-weight: bold;
-font-size: 13px;
-
+#silo select {
+  background-color: #289d43;
+  border: none;
+  border-radius: 8px;
+  height: 25px;
+  width: 110px;
+  font-size: 18px;
+  color: #021404;
+  font-weight: bold;
 }
 
+#info{
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+width: 700px;
+align-items: center;
+padding-left: 60px;
+}
 
-
- 
+#input_id::placeholder {
+  color: rgb(37, 36, 36);
+  font-weight: bold;
+  font-size: 13px;
+}

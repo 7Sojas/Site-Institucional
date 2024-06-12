@@ -1,41 +1,45 @@
 var database = require("../database/config");
 
 
-//Cadastrar dados do silo no banco de dados
-function cadastrar(logradouro, numero, cep, nome, tempMin, tempMax, umiMin, umiMax) {
-    // Primeiro INSERT: insere o endereço
-    var instrucaoSql1 = `INSERT INTO endereco (logradouro, numero, cep) VALUES ('${logradouro}', '${numero}', '${cep}');`;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql1);
-
-    // Executa o primeiro INSERT e obtém o ID do endereço inserido
-    database.executar(instrucaoSql1, function (resultado1) {
-        var fkEndereco = resultado1.insertId;  // Obtém o ID do endereço inserido
-
-        // Segundo INSERT: insere a propriedade com o ID do endereço recém-inserido
-        var instrucaoSql2 = `INSERT INTO propriedade (nome, proprietario, fkEndereco, fkUsuario) VALUES ('${nome}', 'Ana', ${fkEndereco}, 1);`;
-
-        console.log("Executando a instrução SQL: \n" + instrucaoSql2);
-
-        // Executa o segundo INSERT
-        database.executar(instrucaoSql2, function (resultado2) {
-            // Aqui você pode manipular o resultado da segunda inserção, se necessário
-            console.log("Propriedade cadastrada com sucesso!");
-        });
-    });
-}
-
-function cadastrar(logradouro, numero, cep) 
+function cadastrar(logradouro, numero, cep, nome,id) 
 {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", logradouro,numero,cep);
-    
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarPropriedadeComEndereco():", logradouro, numero, cep, nome,id);
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
-        INSERT INTO endereco (logradouro,numero,cep) VALUES ('${logradouro}', '${numero}', '${cep}');
+    // e na ordem de inserção dos dados.
+    var inserirEnderecoSql = `
+        INSERT INTO endereco (logradouro, numero, cep) VALUES ('${logradouro}', '${numero}', '${cep}');
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+
+    console.log("Executando a instrução SQL para inserir endereço: \n" + inserirEnderecoSql);
+
+    return database.executar(inserirEnderecoSql)
+        .then(() => {
+            // Query para pegar o último ID inserido
+            var pegarUltimoIdSql = `SELECT max(id) FROM endereco;`;
+            console.log("Executando a instrução SQL para pegar o último ID inserido: \n" + pegarUltimoIdSql);
+            return database.executar(pegarUltimoIdSql);
+        })
+        .then(result => 
+            {
+            // Supondo que o resultado da query é um array de objetos e estamos pegando o primeiro objeto
+            var enderecoId = result[0]['max(id)'];
+            console.log("ID do endereço inserido: " + enderecoId);
+
+            var inserirPropriedadeSql = `
+                INSERT INTO propriedade (nome, fkEndereco, fkUsuario) VALUES ('${nome}', '${enderecoId}', '${id}');
+            `;
+            
+            console.log("Executando a instrução SQL para inserir propriedade: \n" + inserirPropriedadeSql);
+            return database.executar(inserirPropriedadeSql);
+            })
+        .then(result => {
+            console.log("Propriedade inserida com sucesso.");
+            return result;
+        })
+        .catch(error => {
+            console.error("Erro ao executar as instruções SQL: ", error);
+            throw error;
+        });
 }
 
 

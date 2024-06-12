@@ -67,14 +67,18 @@
   </body>
 </html>
 
-<script  src="//code.jivosite.com/widget/q3hkbM54dw" async>
-  function cadastrar() {
+<script  src="//code.jivosite.com/widget/q3hkbM54dw" async></script>
 
+<script>
+  function cadastrar() 
+  {
     var logradouroVar = input_logradouro.value;
     var numeroVar = input_numero.value;
     var cepVar = input_cep.value;
+    var nomeVar = input_nome.value;
+    var userIdVar = sessionStorage.getItem('ID_USUARIO');
 
-    if (logradouroVar == "" || numeroVar == "" || cepVar == "") 
+    if (logradouroVar == "" || numeroVar == "" || cepVar == "" || nomeVar == "") 
     {
         mostrarErro("Preencha todos os campos para continuar");
         return false;
@@ -102,6 +106,8 @@
             logradouroServer: logradouroVar,
             numeroServer: numeroVar,
             cepServer: cepVar,
+            nomeServer: nomeVar,
+            userIdServer: userIdVar
         }),
     })
     .then(function (resposta) 

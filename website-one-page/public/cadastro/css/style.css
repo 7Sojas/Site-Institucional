@@ -1,5 +1,5 @@
 body {
-    background: url('./src/fundoCadastro.jpg');
+    background-image: url('../../cadastro/src/fundoCadastro.jpg');
     background-size: 100%;
 
     margin: 0;

@@ -10,5 +10,8 @@ router.post("/cadastrar", function (req, res)
     propriedadeController.cadastrar(req,res);
 });
 
+router.get("/:idPropriedade/silos", (req, res) => {
+    propriedadeController.buscarSilosPorPropriedade(req, res)
+})
 
 module.exports = router;

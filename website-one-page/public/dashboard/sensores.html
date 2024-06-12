@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body onload="sessao()">
 
     <aside class="menu">
 
@@ -38,9 +38,9 @@
 
                         </svg> <span>DASHBOARD</span></a></li>
 
-                <li><a style="color: #5cff95;" href="/sensores.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="#5cff95" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-waypoints">
+                <li><a style="color: #5cff95;" href="/sensores.html"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="#5cff95" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-waypoints">
                             <circle cx="12" cy="4.5" r="2.5" />
                             <path d="m10.2 6.3-3.9 3.9" />
                             <circle cx="4.5" cy="12" r="2.5" />
@@ -63,20 +63,25 @@
                             <path d="m18 15-2-2" />
                             <path d="m15 18-2-2" />
                         </svg><span>AJUDA</span></a></li>
-                <li><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                <li onclick="logout()"><span id="logout"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-log-out">
                             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                             <polyline points="16 17 21 12 16 7" />
                             <line x1="21" x2="9" y1="12" y2="12" />
-                        </svg><span>SAIR</span></a></li>
+                        </svg><span id="logout">SAIR</span></span></li>
             </ul>
 
             <div>
 
                 <a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    <span>SOJAS BRASIL</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-user">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span id="nomeUsuario">SOJAS BRASIL</span>
                 </a>
             </div>
         </nav>
@@ -86,16 +91,16 @@
     <main>
 
         <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"
-              fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-waypoints">
-              <circle cx="12" cy="4.5" r="2.5" />
-              <path d="m10.2 6.3-3.9 3.9" />
-              <circle cx="4.5" cy="12" r="2.5" />
-              <path d="M7 12h10" />
-              <circle cx="19.5" cy="12" r="2.5" />
-              <path d="m13.8 17.7 3.9-3.9" />
-              <circle cx="12" cy="19.5" r="2.5" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
+                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-waypoints">
+                <circle cx="12" cy="4.5" r="2.5" />
+                <path d="m10.2 6.3-3.9 3.9" />
+                <circle cx="4.5" cy="12" r="2.5" />
+                <path d="M7 12h10" />
+                <circle cx="19.5" cy="12" r="2.5" />
+                <path d="m13.8 17.7 3.9-3.9" />
+                <circle cx="12" cy="19.5" r="2.5" />
             </svg>
             <h1>SENSORES</h1>
         </div>
@@ -120,8 +125,30 @@
 
     </main>
 
+    <script>
+
+
+
+        function sessao() {
+            const idUsuario = sessionStorage.ID_USUARIO
+            const nome = sessionStorage.NOME_USUARIO
+
+            nomeUsuario.innerHTML = nome
+        }
+
+
+        function logout() {
+            sessionStorage.clear()
+
+            window.location = '../index.html'
+        }
+
+    </script>
+
 
 
 </body>
 
 </html>
+
+<script  src="//code.jivosite.com/widget/q3hkbM54dw" async></script>

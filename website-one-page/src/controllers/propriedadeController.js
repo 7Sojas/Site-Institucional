@@ -59,9 +59,23 @@ function getPropriedadesByUsuario(req, res) {
     });
 }
 
+function buscarSilosPorPropriedade(req, res) {
+    var idPropriedade = req.params.idPropriedade;
+  
+    propriedadeModel.buscarSilosPorPropriedade(idPropriedade)
+      .then(resultado => {
+        res.status(200).json(resultado);
+      })
+      .catch(erro => {
+        console.log(erro);
+        res.status(500).json(erro);
+      });
+  }
+
 
 module.exports = 
 {
     getPropriedadesByUsuario,
-    cadastrar
+    cadastrar,
+    buscarSilosPorPropriedade
 }

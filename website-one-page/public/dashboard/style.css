@@ -66,11 +66,12 @@ li {
     align-items: center; 
 }
 
-.menu  a {
+.menu a, .menu #logout {
+    color: white;
     font-weight: 600;
     display: flex;
     gap: 15px;
-
+    cursor: pointer;
     text-transform: lowercase;
 }
 

@@ -60,6 +60,7 @@ body
     font-size: 14px;
     font-weight: 800;
     line-height: 21px;
+    padding-right: 10px;
     text-align: left;
     justify-content: space-evenly;
     align-items: center;
@@ -122,11 +123,59 @@ body
     justify-content: space-around;
     align-items: center;
 }
-
 #btn_cadastro:hover
 {
     transform: scale(1.04);
 }
+
+
+
+button[name="btn_faq"]{
+    color: #FFF;
+border: none;    
+background-color: #09420D;
+    width:40px ;
+    height:40px;
+    border-radius: 50px;
+    text-align: center;
+    display: flex;
+    cursor: pointer;
+    transition: 0.3s;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.faq{
+display: none;
+background-color: #09420D;
+
+position: absolute;
+height: 60px;
+width: 100px;
+border-radius: 10px;
+padding: 5px;
+font-size: 14px;
+
+
+}
+
+.faq a{
+display: block;
+text-decoration: none;
+padding: 8px 10px;
+}
+
+.manual{
+    position: relative;
+}
+
+.manual:hover .faq{
+display: block;
+
+}
+
 
 #btn_cadastro img
 {

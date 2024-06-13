@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/cadastros.css">
     <link rel="icon" type="image/png" href="../img_one_page/img_calculadora/soja.ico">
+    
+    
+    <!--Importação da font Poppins-->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
     <title>Cadastro de Silo</title>
 </head>
 <body>
@@ -12,10 +19,9 @@
         <button id="bVoltar" onclick="voltar()"><img src="src/seta.png" width="65px"></button>
     </div>
 
-    <div id="cadastro" style="width:820px ; height: 680px;">
+    <div id="cadastro" style="width:820px ; height: 650px;">
       <h1 style="font-size: 46px;">Cadastre seu Silo</h1>
       <div id="silo">
-        <br>
         <div id="info">
           <div>
         <span> Nome:</span>
@@ -31,26 +37,28 @@
     </div>
     </div>
 <br>
-      <span style="font-size: 17px; text-align: center;">*Nos campos abaixo devem ser inseridos quais os intervalos de temperatura e umidade 
+      <span style="font-size: 14px; text-align: center; line-height: 1em;">*Nos campos abaixo devem ser inseridos quais os intervalos de temperatura e umidade 
         que você estabelece estável dentro dos silos de armazenamento de sua propriedade. </span>
       <div id="dados">
            
         <div>
           TEMPERATURA
-          <br /><br />
+          <br />
 
-          mín max
+          <span style="font-size: 22px;"> mín max</span>
           <br />
           <input type="number" id="temp_input_min" class="input_p" />
 
           <input type="number" id="temp_input_max" class="input_p" />
           <br /><br />
+
         </div>
 
         <div>
-          UMIDADE
-          <br /><br />
-          mín max
+          <span>UMIDADE</span>
+          
+          <br />
+          <span style="font-size: 22px;"> mín max</span>
           <br />
           <input type="number" id="umi_input_min" class="input_p" />
 
@@ -60,7 +68,7 @@
 
         </div>
       </div>
-      <br><br> <br><br>
+      <br><br> <br>
 
     <br><br>
       </div>
@@ -70,3 +78,13 @@
     
 </body>
 </html>
+
+<script>
+
+  
+function voltar(){
+
+window.location="./propriedade.html"
+
+}
+</script>

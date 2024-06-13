@@ -5,8 +5,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   padding: 0;
-
-  justify-content: center;
+  font-family: 'Poppins', sans-serif;  justify-content: center;
 
   background-image: url("../src/fundoSoja.png");
   background-size: cover;
@@ -15,7 +14,7 @@ body {
 }
 
 #header {
-  padding: 18px 0 0 30px;
+  padding: 0 0 0 30px;
   width: 100%;
 }
 
@@ -38,8 +37,10 @@ body {
 #propriedade {
   padding: 20px 0 50px 10px;
   font-weight: bold;
-  font-size: 27px;
+  font-size: 23px;
 }
+
+
 
 .campos {
   display: flex;
@@ -70,6 +71,9 @@ input {
   border: none;
   border-radius: 8px;
   height: 25px;
+  outline: none;
+
+  font-size: 18px;
 }
 
 .input_g {

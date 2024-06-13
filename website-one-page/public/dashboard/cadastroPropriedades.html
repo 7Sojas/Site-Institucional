@@ -9,6 +9,13 @@
       type="image/png"
       href="../img_one_page/img_calculadora/soja.ico"
     />
+
+
+    <!--Importação da font Poppins-->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <title>Cadastro de Propriedade</title>
   </head>
   <body>
@@ -18,7 +25,7 @@
       </button>
     </div>
     <div id="sessao">
-      <div id="cadastro" style="width: 800px; height: 550px">
+      <div id="cadastro" style="width: 780px; height: 500px">
         <h1 style="font-size: 40px;">Cadastre sua Propriedade</h1>
         <div id="propriedade">
           <div id="endereco">
@@ -29,7 +36,6 @@
                 <span>CEP</span>
               </div>
             </div>
-            <br />
 
             <input type="text" id="input_logradouro" class="input_g" />
             <input type="number" id="input_numero" class="input_p" />
@@ -37,12 +43,14 @@
             <br /><br />
           </div>
           <div class="campos" style="width: 600px;">
-            Nome da Propriedade
+            <span>
+              Nome da Propriedade
+            </span>
             <input type="text" id="input_nome" class="input_g" />
             <br /><br />
             
           </div>
-          <span style="font-size: 17px; text-align: center;">*Na próxima sessão você poderá cadastrar seus silos. </span>
+          <span style="font-size: 17px; text-align: center;"></span>
         
         </div>
        
@@ -59,14 +67,25 @@
   </body>
 </html>
 
-<script  src="//code.jivosite.com/widget/q3hkbM54dw" async>
-  function cadastrar() {
+<script  src="//code.jivosite.com/widget/q3hkbM54dw" async></script>
 
+<script>
+
+function voltar(){
+
+  window.location="./propriedade.html"
+
+}
+
+  function cadastrar() 
+  {
     var logradouroVar = input_logradouro.value;
     var numeroVar = input_numero.value;
     var cepVar = input_cep.value;
+    var nomeVar = input_nome.value;
+    var userIdVar = sessionStorage.getItem('ID_USUARIO');
 
-    if (logradouroVar == "" || numeroVar == "" || cepVar == "") 
+    if (logradouroVar == "" || numeroVar == "" || cepVar == "" || nomeVar == "") 
     {
         mostrarErro("Preencha todos os campos para continuar");
         return false;
@@ -94,6 +113,8 @@
             logradouroServer: logradouroVar,
             numeroServer: numeroVar,
             cepServer: cepVar,
+            nomeServer: nomeVar,
+            userIdServer: userIdVar
         }),
     })
     .then(function (resposta) 

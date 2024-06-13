@@ -127,6 +127,10 @@
         </div>
         <h2>PROPRIEDADES</h2>
 
+        <div id="warning">
+            <h3>Você ainda não cadastrou nenhuma propriedade.</h3>
+        </div>
+
         <div class="card-content" id="propriedades-container">
             <!-- As propriedades serão carregadas aqui -->
         </div>
@@ -136,8 +140,8 @@
 </html>
 
 <script src="//code.jivosite.com/widget/q3hkbM54dw" async></script>
-<script>
 
+<script>
 
     function carregarPropriedades() {
 
@@ -147,77 +151,83 @@
         nomeUsuario.innerHTML = nome
         console.log(idUsuario)
 
-        fetch("/propriedade/${id}/porcentagemSilo")
-
         fetch(`/propriedade/${idUsuario}/propriedades`)
             .then(data => data.json())
             .then(response => {
-                console.log(response)
+
 
                 let propriedadeAlerta = 0;
 
                 const container = document.getElementById('propriedades-container');
                 container.innerHTML = '';
 
+
+
                 document.querySelectorAll('.qtd_propriedades')[0].innerHTML = response.length
 
-                response.forEach(item => {
+                if (response.length > 0) {
+
+                    response.forEach(item => {
 
 
-                    let alerta = 0;
+                        let alerta = 0;
 
-                    fetch(`/propriedade/${item.id}/alerta`)
-                        .then(resposta => resposta.json())
-                        .then(data => {
-                            if (data[0] == undefined) {
+                        fetch(`/propriedade/${item.id}/alerta`)
+                            .then(resposta => resposta.json())
+                            .then(data => {
+                                if (data[0] == undefined) {
 
-                                const card = document.createElement('a');
-                                card.href = `index.html?id=${item.id}`;
-                                card.innerHTML = `
-                            <div class="card">
+                                    const card = document.createElement('a');
+                                    card.href = `index.html?id=${item.id}`;
+                                    card.innerHTML = `
+                                <div class="card">
+                                    <img src="src/farm.png" alt="">
+                                    <li>
+                                        <h3> ${item.nome}</h3>
+                                    </li>
+                                </div>
+                        `;
+                                    container.appendChild(card);
+
+                                }
+
+                                if (data[0].PROPRIEDADE != undefined) {
+                                    const card = document.createElement('a');
+                                    card.href = `index.html?id=${item.id}`;
+                                    card.innerHTML = `
+                                <div class="card">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="orange" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-circle-alert">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" x2="12" y1="8" y2="12" />
+                                    <line x1="12" x2="12.01" y1="16" y2="16" />
+                                </svg>
+                                
                                 <img src="src/farm.png" alt="">
-                                <li>
-                                    <h3> ${item.nome}</h3>
-                                </li>
-                            </div>
-                    `;
-                                container.appendChild(card);
+                                    <li>
+                                        <h3>${item.nome}</h3>
+                                    </li>
+                                </div>
+                        `;
+                                    container.appendChild(card);
 
-                            }
-
-                            if (data[0].PROPRIEDADE != undefined) {
-                                const card = document.createElement('a');
-                                card.href = `index.html?id=${item.id}`;
-                                card.innerHTML = `
-                            <div class="card">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="orange" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-circle-alert">
-                                <circle cx="12" cy="12" r="10" />
-                                <line x1="12" x2="12" y1="8" y2="12" />
-                                <line x1="12" x2="12.01" y1="16" y2="16" />
-                            </svg>
-                            
-                            <img src="src/farm.png" alt="">
-                                <li>
-                                    <h3>${item.nome}</h3>
-                                </li>
-                            </div>
-                    `;
-                                container.appendChild(card);
-
-                                alerta++
+                                    alerta++
 
 
-                                const porcentagem = (alerta / response.length) * 100
-                                qtd_propriedade.innerHTML = porcentagem.toFixed(0) + '%'
-                            }
+                                    const porcentagem = (alerta / response.length) * 100
+                                    qtd_propriedade.innerHTML = porcentagem.toFixed(0) + '%'
+                                }
 
-                            span_propriedadeAlerta.innerHTML = alerta
+                                span_propriedadeAlerta.innerHTML = alerta
 
-                        })
+                            })
 
-                })
+                    })
+
+                } else {
+                    warning.style.display = "flex"
+                }
 
             })
     }

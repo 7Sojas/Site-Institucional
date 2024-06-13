@@ -130,6 +130,7 @@
                     <p> <span id="sensor_alerta">0</span>/<span id="qtd_sensor">0</span></p>
                 </div>
             </div>
+            
 
             <div class="graficos-cards">
                 <h3> Gráfico diário de Temperatura </h3>
@@ -146,10 +147,6 @@
 
 
         </div>
-
-
-
-
     </main>
 
 
@@ -177,9 +174,6 @@
             }
             
         }
-
-
-
 
         fetch(`/propriedade/${id}/sensor`)
         .then(resposta => resposta.json())

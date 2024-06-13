@@ -326,6 +326,19 @@ canva {
     width: 100%;
 }
 
+#warning {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    height: 300px;
+    background-color: #0a0c0b77;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
 @media (max-width: 900px) {
 
     .menu {

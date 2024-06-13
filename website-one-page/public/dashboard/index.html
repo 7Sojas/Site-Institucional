@@ -143,6 +143,10 @@
 
         <h2>SILOS</h2>
 
+        <div id="warning">
+            <h3>Você ainda não cadastrou nenhum silo.</h3>
+        </div>
+
         <div class="card-content" id="silos-container">
             <!-- As propriedades serão carregadas aqui -->
         </div>
@@ -208,78 +212,82 @@
                     document.querySelectorAll('.qtd_silos')[0].innerHTML = response.length
 
                     let contador = 1;
-                    
-                    response.forEach(item => {
 
-                        let alerta = 0;
+                    if (response.length > 0) {
 
-                        idSilos.push(item.id)
+                        response.forEach(item => {
 
-                        console.log(idSilos)
+                            let alerta = 0;
 
-                        fetch(`/propriedade/${item.id}/alertas`)
-                            .then(resposta => resposta.json())
-                            .then(data => {
-                                
-                                
-                                if (data[0] == undefined) {
+                            idSilos.push(item.id)
 
-                                    const card = document.createElement('a');
-                                    card.href = `silo.html?id=${item.id}`;
-                                    card.innerHTML = `
-                                    <div class="card">
+                            console.log(idSilos)
+
+                            fetch(`/propriedade/${item.id}/alertas`)
+                                .then(resposta => resposta.json())
+                                .then(data => {
+
+
+                                    if (data[0] == undefined) {
+
+                                        const card = document.createElement('a');
+                                        card.href = `silo.html?id=${item.id}`;
+                                        card.innerHTML = `
+                                        <div class="card">
+                                            <img src="src/propriedade.png" alt="">
+                                            <li>
+                                                <h3>Silo ${contador}</h3>
+                                            </li>
+                                        </div>
+                                `;
+                                        container.appendChild(card);
+
+                                        contador++
+
+
+                                    }
+
+                                    if (data[0].SILO != undefined) {
+                                        const card = document.createElement('a');
+                                        card.href = `silo.html?id=${item.id}`;
+                                        card.innerHTML = `
+                                        <div class="card">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="orange" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-circle-alert">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <line x1="12" x2="12" y1="8" y2="12" />
+                                            <line x1="12" x2="12.01" y1="16" y2="16" />
+                                        </svg>
+                                        
                                         <img src="src/propriedade.png" alt="">
-                                        <li>
-                                            <h3>Silo ${contador}</h3>
-                                        </li>
-                                    </div>
-                            `;
-                                    container.appendChild(card);
+                                            <li>
+                                                <h3>Silo ${contador}</h3>
+                                            </li>
+                                        </div>
+                                `;
 
-                            contador++
+                                        container.appendChild(card);
 
+                                        alerta++
 
-                                }
-                                
-                                if (data[0].SILO != undefined) {
-                                    const card = document.createElement('a');
-                                    card.href = `silo.html?id=${item.id}`;
-                                    card.innerHTML = `
-                                    <div class="card">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        stroke="orange" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-circle-alert">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <line x1="12" x2="12" y1="8" y2="12" />
-                                        <line x1="12" x2="12.01" y1="16" y2="16" />
-                                    </svg>
-                                    
-                                    <img src="src/propriedade.png" alt="">
-                                        <li>
-                                            <h3>Silo ${contador}</h3>
-                                        </li>
-                                    </div>
-                            `;
-                            
-                            container.appendChild(card);
-                            
-                            alerta++
-                            
-                            const porcentagem = (alerta / response.length) * 100
-                            qtd_silos.innerHTML = porcentagem.toFixed(0) + '%'
-                            
-                            contador++
-                        }
-                                
+                                        const porcentagem = (alerta / response.length) * 100
+                                        qtd_silos.innerHTML = porcentagem.toFixed(0) + '%'
 
-                                span_alertas.innerHTML = alerta
+                                        contador++
+                                    }
+
+                                    span_alertas.innerHTML = alerta
+
+                                })
+
+                        })
+                    } else {
+                        warning.style.display = "flex"
+                    }
 
 
-                            })
-
-                    })
-
-                    sessionStorage.silo = idSilos 
+                    sessionStorage.silo = idSilos
 
                 })
 

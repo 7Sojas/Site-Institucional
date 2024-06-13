@@ -71,6 +71,9 @@ input {
   border: none;
   border-radius: 8px;
   height: 25px;
+  outline: none;
+
+  font-size: 18px;
 }
 
 .input_g {

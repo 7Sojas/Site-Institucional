@@ -357,10 +357,11 @@ display: block;
 }
 
 
-/*Calculadora de prejuízo*/
-#sessao_calculadora_prejuizo
-{
-    background-image: url("img_one_page/img_calculadora/fundo.png");
+
+/* Calculadora de prejuízo */
+#sessao_calculadora_prejuizo {
+    background-image: url("/img_one_page/img_calculadora/fundo.png");
+    background-repeat: no-repeat;
     background-position: cover;  
     background-size: 100%;  
     height: 100vh;
@@ -368,80 +369,154 @@ display: block;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top: 40px;
+    padding-top: 0;
 }
 
-.titleCalculadora
-{
-    font-size: 35px;
-    color: #ffffff;
+.titleCalculadora {
+    font-size: 48px;
+    color: rgba(0, 128, 0, 0.9);
     text-align: center;
     font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-.propriedades 
-{
-    background-color: transparent;
-    border-radius: 10px;  
-    padding: 20px; 
-    width: 700px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.propriedades {
+    background-color: rgba(42, 42, 42, 0.9);
+    border-radius: 15px;  
+    padding: 30px; 
+    width: 800px;
     display: flex;
     color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    animation: slideIn 1s ease-in-out;
 }
 
-.logoCalculadora
-{
-    width: 10vw;
-    margin-left: 80px;
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.logoCalculadora {
+    width: 15vw;
+    margin-bottom: 20px;
+    animation: bounceIn 1.5s ease-in-out;
+}
+
+@keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -3000px, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 25px, 0);
+    }
+    75% {
+        transform: translate3d(0, -10px, 0);
+    }
+    90% {
+        transform: translate3d(0, 5px, 0);
+    }
+    to {
+        transform: none;
+    }
 }
 
 .topicos_esquerda {
     border-radius: 10px;
-    padding: 10px;
-    width: 340px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Aplica 20px de margem na parte de baixo */
+.topicos_direita {
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#desenhoCalculadora {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+#show {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
 .conteudoCalculadora {
     margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Detalhes sobre as inputs */
-.conteudoCalculadora input {
+.conteudoCalculadora label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.conteudoCalculadora input[type="number"] {
+    color: #ffffff;
     background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #36615f; /* Estiliza somente a borda inferior para que fique como uma linha */
-    width: 90%;
     padding: 10px;
-    font-size: 16px;
-    outline: none; /* Define que não terá borda na input */
-    color: white;
-}
-
-.topicos_direita
-{
+    width: 80%;
     border-radius: 10px;
-    padding: 20px; /* Distãncia da bordao conteudo dentro */
-    width: 340px;
-    display: flex;
-    flex-direction: end;
-    align-items: center;
-    justify-content: center;
+    border: none;
+    border-bottom: 2px solid darkgreen;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); */
+    transition: all 0.3s ease-in-out;
 }
 
-#desenhoCalculadora
-{
-    height: 300px;
-    width: 300px;
+.conteudoCalculadora input[type="number"]:focus {
+    outline: none;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
-/* Fução que faz a imagem ficar escondida */
 .hidden {
     display: none;
 }
 
 .result-box {
-    background-color: rgba(9, 66, 13, 0.9);
+    background-color: rgba(0, 128, 0, 0.9);
     opacity: 1;
     border-radius: 10px; 
     padding: 20px; 
@@ -449,49 +524,54 @@ display: block;
     text-align: center; 
     width: 75%; 
     max-height: 100px;
-    animation: countUp 1.5s ease-in-out; /* Aplica a animação countUp com duração de 1.5 segundos e efeito de entrada e saída suave */
+    animation: countUp 1.5s ease-in-out; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes countUp 
-{
-    from 
-    {
-        opacity: 0; /* Começa com opacidade zero */
-        transform: translateY(50px); /* Move para baixo */
+@keyframes countUp {
+    from {
+        opacity: 0; 
+        transform: translateY(50px); 
     }
-    to 
-    {
-        opacity: 1; /* Termina com opacidade total */
-        transform: translateY(0); /* Não há deslocamento vertical */
+    to {
+        opacity: 1; 
+        transform: translateY(0); 
     }
 }
 
 .result-box h3 {
-    font-size: 16px; 
-    color: #fff; 
+    font-size: 18px; 
+    color: white; 
     margin-bottom: 10px; 
 }
 
 .result-box p {
-    font-size: 16px; 
+    font-size: 18px; 
     color: #fff; 
 }
 
-.buttonCalculadora
-{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #77BD1F;
-    color: white;
-    padding: 10px;    /* Distãncia da borda do botão para o que esta escrito nele */
-    border-radius: 15px;  /* Arredonda a borda em 15px */
-    margin-left: 70px;  /* Cria uma margem do lado esqeurdo de 70px */
-    font-weight: 900; /* Torna a grossura da fonte em bold 900 */
+.buttonCalculadora {
+    font-family: 'Arial Black', Gadget, sans-serif;
+    background-color: rgba(0, 128, 0, 0.9);
+    color: #000;
+    padding: 15px 30px; 
+    border-radius: 25px;  
+    margin-top: 20px;  
+    font-weight: 900; 
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    border: none;
+    animation: fadeIn 2s ease-in-out;
 }
 
-.buttonCalculadora:hover
-{
-    transform: scale(1.04);
+.buttonCalculadora:hover {
+    transform: scale(1.1);
     cursor: pointer;
+}
+
+.buttonCalculadora:active {
+    transform: scale(1.05);
 }
 /*CONTATO*/
 

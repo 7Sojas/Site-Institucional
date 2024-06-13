@@ -143,7 +143,6 @@
 
     <!--Sessão calculadora-->
     <div id="sessao_calculadora_prejuizo">
-        <h2 class="titleCalculadora">CALCULE SEU PREJUÍZO</h2>
         <div class="propriedades">
             <!-- Container principal que guarda o container da esquerda(Inputs e botão) e da direita(Resposta) -->
             <div class="topicos_esquerda"> <!-- Container da esquerda, contendo Inputs e botão -->
@@ -191,21 +190,21 @@
     </div>
 </body>
 </html>
+<script  src="//code.jivosite.com/widget/q3hkbM54dw" async></script>
+<script>
+ function CalcularPrejuizo() {
+        let qtdToneladas = Number(input_capacidadeSilo.value); //variavel da primeira input(capacidade do silos em toneladas).
+        let qtdSilos = Number(input_quantidadeSilos.value); //variavel da segunda input (quantidade de silos).
+        let ValorSacaSoja = Number(input_valorPorSacaSoja.value); //variavel da terceira input (valor por saca de soja).
 
-<script  src="//code.jivosite.com/widget/q3hkbM54dw" async>
-    function CalcularPrejuizo() {
-        let qtdToneladas = Number(input_capacidadeSilo.value) //variavel da  primeira input(capacidade do silos em toneladas).
-        let qtdSilos = Number(input_quantidadeSilos.value) //variavel da segunda input (quantidade de silos).
-        let ValorSacaSoja = Number(input_valorPorSacaSoja.value) //variavel da terceira input (valor por saca de soja).
-        
         // 15% (0.15) equivale a média de soja perdida
-        let toneladasPerdidas = (qtdSilos * qtdToneladas) * 0.15
+        let toneladasPerdidas = (qtdSilos * qtdToneladas) * 0.15;
 
         //Transforma toneladas em quilogramas (1 tonelada = 1000 kg) e divide pelo peso de uma saca de soja (60 unidade médida).
-        let qtdPerdaSacas = (toneladasPerdidas * 1000) / 60
+        let qtdPerdaSacas = (toneladasPerdidas * 1000) / 60;
 
         //Valor do quanto é perdido 
-        let precoPerdido = ValorSacaSoja * qtdPerdaSacas
+        let precoPerdido = ValorSacaSoja * qtdPerdaSacas;
 
         //Formata o preço perdido para uma string no formato monetário brasileiro.
         let precoFormatado = precoPerdido.toLocaleString('pt-BR');
@@ -214,28 +213,57 @@
         //(Por exemplo, se o resultado da divisão for 3.4, ele será arredondado para 3, e se for 3.6, será arredondado para 4)
         let qtdPerdaSacasArredondado = Math.round(precoPerdido / ValorSacaSoja);
 
-        //Condição que diz "se a imagem estiver escondida(hidden), deve aparecer a resposta". 
+        // Condição que diz "se a imagem estiver escondida(hidden), deve aparecer a resposta". 
         if (desenhoCalculadora.hidden = true) {
             show.innerHTML = "";
 
             // Adiciona os resultados em três caixas distintas
             show.innerHTML +=
             `<div class="result-box">
-                <h3>Média de perda de toneladas de soja:</h3>
-                <p>${toneladasPerdidas} toneladas</p>
+                <h3>Média de toneladas de soja perdidas:</h3>
+                <p id="toneladasPerdidas">0 toneladas</p>
             </div>`;
 
             show.innerHTML +=
             `<div class="result-box">
-                <h3>Quantidade de sacas de soja:</h3>
-                <p>${qtdPerdaSacasArredondado} sacas</p>
+                <h3>Quantidade de sacas de soja perdidas:</h3>
+                <p id="qtdPerdaSacasArredondado">0 sacas</p>
             </div>`;
 
             show.innerHTML +=
             `<div class="result-box">
                 <h3>Prejuízo significativo:</h3>
-                <p>R$${precoFormatado}, 15% do lucro total</p>
+                <p id="precoPerdido">R$0, 15% do lucro total</p>
             </div>`;
+
+            // Função para animar a contagem dos números
+            animateValue("toneladasPerdidas", 0, toneladasPerdidas, 2000, " toneladas");
+            animateValue("qtdPerdaSacasArredondado", 0, qtdPerdaSacasArredondado, 2000, " sacas");
+            animateValue("precoPerdido", 0, precoPerdido, 2000, ` <b>15%</b> do lucro total`, true);
         }
+    }
+
+    function animateValue(id, start, end, duration, suffix = "", isCurrency = false) {
+        const obj = document.getElementById(id);
+        const range = end - start;
+        let startTime = null;
+
+        const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const value = Math.floor(progress * range + start);
+
+            if (isCurrency) {
+                obj.innerHTML = `R$${value.toLocaleString('pt-BR')}${suffix}`;
+            } else {
+                obj.innerHTML = `${value}${suffix}`;
+            }
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+
+        window.requestAnimationFrame(step);
     }
 </script>

@@ -54,17 +54,17 @@
                     <br><br>
                     <button onclick="realizarCadastro()"><b>CADASTRAR</b></button>
                     <br>
+                    <div class="alerta_erro">
+                      <div class="card_erro" id="cardErro">
+                          <span id="mensagem_erro"></span>
+                      </div>
+                  </div>
                     <p id="p_instrucao">Senha deve conter primeira letra maiúscula, 123 e algum caractere especial entre
                         @, # ou *
                     </p>
 
                     <p>Já possui uma conta? Realize o <a href="login.html">Login</a></p>
                 </center>
-            </div>
-            <div class="alerta_erro">
-                <div class="card_erro" id="cardErro">
-                  <span id="mensagem_erro"></span>
-                </div>
             </div>
 
 
@@ -92,16 +92,39 @@
         confirmacaoSenhaVar == "" ||
         cpfVar == ""
       ) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-          "Preencha todos os campos para continuar!";
-  
-        //finalizarAguardar();
-        return false;
-      } else {
-        setInterval(sumirMensagem, 5000);
+        cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos para continuar!";
+            return false;
       }
-  
+        if (!nomeVar.match(/^[A-Z][a-z]+(\s[A-Z][a-z]+)?$/)) {
+            alert('O nome deve começar com letra maiúscula e conter pelo menos um sobrenome.');
+            return;
+        } else {
+            if (nomeVar.length < 2) {
+                alert('O nome deve ter pelo menos 5 caracteres.');
+                return;
+            }
+        }
+
+        if (!emailVar.includes('@')) {
+            alert('O e-mail deve conter o caractere "@".');
+            return;
+        }
+
+        if (!senhaVar.match(/^[A-Z][A-Za-z0-9#*@]+[0-9]+[A-Za-z0-9#*@]+$/)) {
+            alert('A senha deve começar com letra maiúscula, conter um número de 0 à 9 e incluir um caractere especial entre "@", "#" ou "*".');
+            return;
+        } else {
+            if (senhaVar.length < 8) {
+                alert('A senha deve ter pelo menos 8 caracteres.');
+                return;
+            }
+        }
+
+        if (senhaVar !== confirmacaoSenhaVar) {
+            alert('A confirmação de senha não corresponde à senha digitada.');
+            return;
+        }
       // Enviando o valor da nova input
       fetch("/usuarios/cadastrar", {
         method: "POST",
@@ -121,10 +144,7 @@
           console.log("resposta: ", resposta);
   
           if (resposta.ok) {
-            cardErro.style.display = "block";
-  
-            mensagem_erro.innerHTML =
-              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
   
             setTimeout(() => {
               window.location = "login.html";
@@ -161,7 +181,7 @@
     }
   
     function sumirMensagem() {
-      cardErro.style.display = "none";
+        cardErro.style.display = "none"
     }
   
     function instrucaoSenha(){

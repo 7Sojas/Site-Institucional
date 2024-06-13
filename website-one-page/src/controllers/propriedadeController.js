@@ -21,17 +21,15 @@ function cadastrar(req, res) {
     else if (cep == undefined) {
         res.status(400).send("Seu cep está undefined!");
     }
-    else if (nome == undefined) 
-    {
+    else if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    } 
-    else if (id == undefined) 
-    {
+    }
+    else if (id == undefined) {
         res.status(400).send("Seu id está undefined!");
-    } 
+    }
     else {
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        propriedadeModel.cadastrar(logradouro, numero, cep,nome,id)
+        propriedadeModel.cadastrar(logradouro, numero, cep, nome, id)
             .then
             (
                 function (resultado) {
@@ -88,10 +86,24 @@ function buscarSilosAlerta(req, res) {
             res.status(500).json(erro);
         });
 }
+
 function buscarPropriedadeAlerta(req, res) {
     var idPropriedade = req.params.idPropriedade;
 
     propriedadeModel.buscarPropriedadeAlerta(idPropriedade)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+}
+
+function buscarTemperaturaUmidadeSilo(req, res) {
+    var idSilo = req.params.idSilo;
+
+    propriedadeModel.buscarTemperaturaUmidadeSilo(idSilo)
         .then(resultado => {
             res.status(200).json(resultado);
         })
@@ -108,5 +120,6 @@ module.exports =
     cadastrar,
     buscarSilosPorPropriedade,
     buscarSilosAlerta,
-    buscarPropriedadeAlerta
+    buscarPropriedadeAlerta,
+    buscarTemperaturaUmidadeSilo
 }

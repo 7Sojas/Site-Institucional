@@ -43,8 +43,7 @@ function cadastrar(logradouro, numero, cep) {
             console.log("Executando a instrução SQL para pegar o último ID inserido: \n" + pegarUltimoIdSql);
             return database.executar(pegarUltimoIdSql);
         })
-        .then(result => 
-            {
+        .then(result => {
             // Supondo que o resultado da query é um array de objetos e estamos pegando o primeiro objeto
             var enderecoId = result[0]['max(id)'];
             console.log("ID do endereço inserido: " + enderecoId);
@@ -52,10 +51,10 @@ function cadastrar(logradouro, numero, cep) {
             var inserirPropriedadeSql = `
                 INSERT INTO propriedade (nome, fkEndereco, fkUsuario) VALUES ('${nome}', '${enderecoId}', '${id}');
             `;
-            
+
             console.log("Executando a instrução SQL para inserir propriedade: \n" + inserirPropriedadeSql);
             return database.executar(inserirPropriedadeSql);
-            })
+        })
         .then(result => {
             console.log("Propriedade inserida com sucesso.");
             return result;
@@ -110,8 +109,21 @@ function buscarPropriedadeAlerta(idPropriedade) {
     where prop.id = ${idPropriedade} and a.id is not null;
     `
     return database.executar(instrucaoSql);
-
 }
+
+function buscarTemperaturaUmidadeSilo(idSilo) {
+    var instrucaoSql = `
+
+    select silos.id SILO, IFNULL(ROUND(AVG(umidadeDht)), 0) UMIDADE_MEDIA, IFNULL(ROUND(AVG(temperaturaLm)), 0) TEMPERATURA_MEDIA from leituraSensor
+    join sensor on leituraSensor.fkSensor = sensor.id
+    join silos on silos.id = sensor.fkSilo 
+    where silos.id = ${idSilo};
+
+    `
+    return database.executar(instrucaoSql);
+}
+
+
 
 
 module.exports =
@@ -120,5 +132,6 @@ module.exports =
     cadastrar,
     buscarSilosPorPropriedade,
     buscarSilosAlerta,
-    buscarPropriedadeAlerta
+    buscarPropriedadeAlerta,
+    buscarTemperaturaUmidadeSilo
 }

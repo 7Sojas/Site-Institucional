@@ -22,5 +22,14 @@ router.get("/:idPropriedade/alerta", (req, res) => {
     propriedadeController.buscarPropriedadeAlerta(req, res)
 })
 
+router.get("/:idPropriedade/alerta", (req, res) => {
+    propriedadeController.buscarPropriedadeAlerta(req, res)
+})
+
+
+router.get("/:idSilo/temperaturaUmidade", (req, res) => {
+    propriedadeController.buscarTemperaturaUmidadeSilo(req, res)
+})
+
 
 module.exports = router;

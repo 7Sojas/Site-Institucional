@@ -25,10 +25,9 @@ function cadastrar(logradouro, numero, cep, nome, tempMin, tempMax, umiMin, umiM
     });
 }
 
-function cadastrar(logradouro, numero, cep) 
-{
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", logradouro,numero,cep);
-    
+function cadastrar(logradouro, numero, cep) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", logradouro, numero, cep);
+
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
@@ -40,7 +39,10 @@ function cadastrar(logradouro, numero, cep)
 
 
 function buscarPropriedadesPorUsuario(idUsuario) {
-    var instrucaoSql = `SELECT * FROM propriedade WHERE fkUsuario = '${idUsuario}'`;
+    var instrucaoSql = `
+    SELECT * FROM propriedade WHERE fkUsuario = ${idUsuario};
+    `
+
     return database.executar(instrucaoSql);
 }
 
@@ -56,10 +58,38 @@ function buscarSilosPorPropriedade(idPropriedade) {
     return database.executar(instrucaoSql);
 }
 
+function buscarSilosAlerta(idSilo) {
+    var instrucaoSql = `
+    select distinct(si.id) SILO
+    from silos si
+    inner join sensor s on si.id = s.fkSilo
+    inner join alerta a on a.fkSensor = s.id
+    where si.id = ${idSilo} and a.id is not null;
+    `
+
+    return database.executar(instrucaoSql);
+
+}
+
+function buscarPropriedadeAlerta(idPropriedade) {
+    var instrucaoSql = `
+    select distinct(prop.id) PROPRIEDADE
+    from propriedade prop
+    inner join silos si on si.fkPropriedade = prop.id
+    inner join sensor s on si.id = s.fkSilo
+    inner join alerta a on a.fkSensor = s.id
+    where prop.id = ${idPropriedade} and a.id is not null;
+    `
+    return database.executar(instrucaoSql);
+
+}
+
 
 module.exports =
 {
     buscarPropriedadesPorUsuario,
     cadastrar,
-    buscarSilosPorPropriedade
+    buscarSilosPorPropriedade,
+    buscarSilosAlerta,
+    buscarPropriedadeAlerta
 }

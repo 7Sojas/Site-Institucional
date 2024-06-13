@@ -163,6 +163,12 @@ main input:focus {
     transition: .2s;
 }
 
+.card svg {
+    position: absolute;
+    left: 20px;
+    display: flex;
+}
+
 .display-none {
     display: none;
 }

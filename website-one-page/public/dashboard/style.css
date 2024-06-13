@@ -161,6 +161,7 @@ main input:focus {
 
     cursor: pointer;
     transition: .2s;
+    position: relative;
 }
 
 .card svg {

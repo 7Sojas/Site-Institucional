@@ -106,16 +106,9 @@
         <div class="kpi-content kpi-index">
             <div class="kpi-graficos-cards" style="width: 350px;">
                 <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="bold"
-                        stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-triangle-alert">
-                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
-                        <path d="M12 9v4" />
-                        <path d="M12 17h.01" />
-                    </svg>
-                    <h3>Propriedades em estado crítico</h3>
+                    <h3>Média propriedades em alerta</h3>
                 </div>
-                <p> 0/<span class="qtd_propriedades"></span></p>
+                <p id="qtd_propriedade">0%</p>
             </div>
             <div class="kpi-graficos-cards">
                 <div>
@@ -154,6 +147,8 @@
         nomeUsuario.innerHTML = nome
         console.log(idUsuario)
 
+        fetch("/propriedade/${id}/porcentagemSilo")
+
         fetch(`/propriedade/${idUsuario}/propriedades`)
             .then(data => data.json())
             .then(response => {
@@ -165,7 +160,6 @@
                 container.innerHTML = '';
 
                 document.querySelectorAll('.qtd_propriedades')[0].innerHTML = response.length
-                document.querySelectorAll('.qtd_propriedades')[1].innerHTML = response.length
 
                 response.forEach(item => {
 
@@ -213,6 +207,10 @@
                                 container.appendChild(card);
 
                                 alerta++
+
+
+                                const porcentagem = (alerta / response.length) * 100
+                                qtd_propriedade.innerHTML = porcentagem.toFixed(0) + '%'
                             }
 
                             span_propriedadeAlerta.innerHTML = alerta

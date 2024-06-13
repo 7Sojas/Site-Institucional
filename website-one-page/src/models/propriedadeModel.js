@@ -123,6 +123,47 @@ function buscarTemperaturaUmidadeSilo(idSilo) {
     return database.executar(instrucaoSql);
 }
 
+function buscarPorcentagemSilosAlertaPorPropriedade(idPropriedade) {
+    var instrucaoSql = `
+
+    SELECT p.id AS Propriedade,
+    CONCAT(ROUND(AVG(CASE WHEN a.id IS NOT NULL THEN 1 ELSE 0 END) * 100,0), '%') AS MediaSilosEmAlerta
+    FROM propriedade p
+    INNER JOIN silos si ON si.fkPropriedade = p.id
+    LEFT JOIN sensor s ON s.fkSilo = si.id
+    LEFT JOIN alerta a ON a.fkSensor = s.id
+    WHERE p.id = ${idPropriedade}
+    GROUP BY p.id;
+
+    `
+    return database.executar(instrucaoSql);
+}
+
+function contagemSensorPorSilo(idSilo) {
+    var instrucaoSql = `
+
+    select count(sen.id) 'QTD_SENSOR'
+    from sensor sen
+    inner join silos si on si.id = sen.fkSilo
+    where si.id = ${idSilo};
+
+    `
+    return database.executar(instrucaoSql);
+}
+
+function contagemSensorAlertaPorSilo(idSilo) {
+    var instrucaoSql = `
+
+    select count(distinct(s.id)) 'SENSOR_ALERTA'
+    from sensor s
+    inner join silos si on si.id = s.fkSilo
+    inner join alerta a on a.fkSensor = s.id
+    where si.id = ${idSilo} and a.id is not null;
+
+    `
+    return database.executar(instrucaoSql);
+}
+
 
 
 
@@ -133,5 +174,8 @@ module.exports =
     buscarSilosPorPropriedade,
     buscarSilosAlerta,
     buscarPropriedadeAlerta,
-    buscarTemperaturaUmidadeSilo
+    buscarTemperaturaUmidadeSilo,
+    buscarPorcentagemSilosAlertaPorPropriedade,
+    contagemSensorPorSilo,
+    contagemSensorAlertaPorSilo
 }

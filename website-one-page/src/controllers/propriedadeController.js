@@ -113,6 +113,45 @@ function buscarTemperaturaUmidadeSilo(req, res) {
         });
 }
 
+function buscarPorcentagemSilosAlertaPorPropriedade(req, res) {
+    var idPropriedade = req.params.idPropriedade;
+
+    propriedadeModel.buscarPorcentagemSilosAlertaPorPropriedade(idPropriedade)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+}
+
+function contagemSensorPorSilo(req, res) {
+    var idSilo = req.params.idSilo;
+
+    propriedadeModel.contagemSensorPorSilo(idSilo)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+}
+
+function contagemSensorAlertaPorSilo(req, res) {
+    var idSilo = req.params.idSilo;
+
+    propriedadeModel.contagemSensorAlertaPorSilo(idSilo)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+}
+
 
 module.exports =
 {
@@ -121,5 +160,8 @@ module.exports =
     buscarSilosPorPropriedade,
     buscarSilosAlerta,
     buscarPropriedadeAlerta,
-    buscarTemperaturaUmidadeSilo
+    buscarTemperaturaUmidadeSilo,
+    buscarPorcentagemSilosAlertaPorPropriedade,
+    contagemSensorAlertaPorSilo,
+    contagemSensorPorSilo
 }

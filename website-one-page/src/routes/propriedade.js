@@ -26,9 +26,20 @@ router.get("/:idPropriedade/alerta", (req, res) => {
     propriedadeController.buscarPropriedadeAlerta(req, res)
 })
 
-
 router.get("/:idSilo/temperaturaUmidade", (req, res) => {
     propriedadeController.buscarTemperaturaUmidadeSilo(req, res)
+})
+
+router.get("/:idPropriedade/porcentagemSilo", (req, res) => {
+    propriedadeController.buscarPorcentagemSilosAlertaPorPropriedade(req, res)
+})
+
+router.get("/:idSilo/sensor", (req, res) => {
+    propriedadeController.contagemSensorPorSilo(req, res)
+})
+
+router.get("/:idSilo/sensor/alerta", (req, res) => {
+    propriedadeController.contagemSensorAlertaPorSilo(req, res)
 })
 
 

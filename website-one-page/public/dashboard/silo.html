@@ -127,7 +127,7 @@
                         </svg>
                         <h3>Sensores em alerta </h3>
                     </div>
-                    <p> 1/4 </p>
+                    <p> <span id="sensor_alerta">0</span>/<span id="qtd_sensor">0</span></p>
                 </div>
             </div>
 
@@ -161,14 +161,41 @@
 
     <script>
 
+        const idSilos = sessionStorage.silo
+        const listaIdSilos = idSilos.split(",")
 
         const queryString = window.location.search
         const params = new URLSearchParams(queryString)
         const id = params.get('id')
 
-        console.log(id)
+        
 
-        id_silo.innerHTML = id
+        for(let contador = 0; contador < listaIdSilos.length; contador++) {
+
+            if(listaIdSilos[contador] == id) {
+                id_silo.innerHTML = contador + 1
+            }
+            
+        }
+
+
+
+
+        fetch(`/propriedade/${id}/sensor`)
+        .then(resposta => resposta.json())
+        .then(data => {
+            console.log(data[0])
+            qtd_sensor.innerHTML = data[0].QTD_SENSOR
+        })
+        .catch(e => console.error(e))
+
+
+        fetch(`/propriedade/${id}/sensor/alerta`)
+        .then(resposta => resposta.json())
+        .then(data => {
+            sensor_alerta.innerHTML = data[0].SENSOR_ALERTA
+        })
+        .catch(e => console.error(e))
 
         fetch(`/propriedade/${id}/temperaturaUmidade/`)
         .then(resposta => resposta.json())

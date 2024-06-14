@@ -25,7 +25,7 @@
         <div id="info">
           <div>
         <span> Nome:</span>
-        <input type="text" id="input_id" placeholder="   ex: SILO 1 "  class="input_m"/> 
+        <input type="text" id="input_nome" placeholder="   ex: SILO 1 "  class="input_m"/> 
       </div>
       <div>
         <span> Tipo de silo</span>
@@ -73,18 +73,90 @@
     <br><br>
       </div>
       <button id="bCadastrar" onclick="cadastrar()">Cadastrar</button>
-
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
     </div>
-    
 </body>
 </html>
 
 <script>
+  function cadastrar() 
+  {
+    var tipoVar = select_tipo.value;
+    var nomeVar = input_nome.value;
+    var tempMinVar = temp_input_min.value;
+    var tempMaxVar = temp_input_max.value;
+    var umiMinVar = umi_input_min.value;
+    var umimaxVar = umi_input_max.value;
+    var propriedadeIdVar = sessionStorage.getItem('ID_PROPRIEDADE');
 
-  
-function voltar(){
+    if (tipoVar == "vazio" || nomeVar == "" || tempMaxVar == "" || tempMinVar == "" || umiMinVar == "" || umimaxVar == "") 
+    {
+        mostrarErro("Preencha todos os campos para continuar");
+        return false;
+    }
 
-window.location="./propriedade.html"
+    fetch("/silos/cadastrarSilo", 
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify
+        ({
+            tipoServer: tipoVar,
+            nomeServer: nomeVar,
+            tempMaxServer: tempMaxVar,
+            tempMinServer: tempMinVar,
+            umimaxServer: umimaxVar,
+            umiMinServer: umiMinVar,
+            propriedadeIdServer: propriedadeIdVar
 
+          }),
+    })
+    .then(function (resposta) 
+    {
+        if (resposta.ok) {
+            mostrarSucesso("Cadastro realizado com sucesso! Redirecionando para sua dashboard...");
+            setTimeout(() => 
+            {
+              console.log("Cadastrou!");
+                // window.location = "login.html";
+            }, 2000);
+        } else if (resposta.status == 409) 
+        {
+            return resposta.text().then(texto => { throw new Error(texto); });
+        } else 
+        {
+            throw new Error("Houve um erro ao tentar realizar o cadastro!");
+        }
+    })
+    .catch(function (erro) 
+    {
+        mostrarErro(erro.message);
+    })
+    return false;
+}
+
+function mostrarErro(mensagem) 
+{
+    cardErro.style.display = "block";
+    mensagem_erro.innerHTML = mensagem;
+    setTimeout(sumirMensagem, 5000);
+}
+
+function mostrarSucesso(mensagem) 
+{
+    cardErro.style.display = "block";
+    mensagem_erro.innerHTML = mensagem;
+    setTimeout(sumirMensagem, 5000);
+}
+
+function sumirMensagem() 
+{
+    cardErro.style.display = "none";
 }
 </script>

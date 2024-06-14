@@ -195,6 +195,38 @@ main input:focus {
 
 /* GRAFICOS */
 
+#graficosUmidade
+{
+    display: flex;
+    flex-wrap: wrap; /* Permite a quebra de linha automática */
+    gap: 15px; /* Espaço entre os gráficos */
+}
+
+#graficos
+{
+    display: flex;
+    flex-wrap: wrap; /* Permite a quebra de linha automática */
+    gap: 15px; /* Espaço entre os gráficos */
+}
+
+.grafico-container 
+{
+    margin-bottom: 5%;
+    flex: 1 1 calc(50% - 15px); /* Cada gráfico ocupa 50% da largura disponível menos a margem */
+    box-sizing: border-box;
+    background-color: rgb(0, 0, 0,0.5);
+    padding: 16px;
+    border-radius: 8px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.graph 
+{
+    height: 200px; 
+}
+
+
 
 .graficos {
     display: flex;

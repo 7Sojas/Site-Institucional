@@ -9,5 +9,4 @@ router.post("/cadastrarSilo", function (req, res)
     silosController.cadastrarSilo(req, res);
 });
 
-
 module.exports = router;

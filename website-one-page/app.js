@@ -17,7 +17,9 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var propriedadeRouter = require("./src/routes/propriedade"); // Importa o roteador de propriedades
+var propriedadeRouter = require("./src/routes/propriedade"); 
+var sensorRouter = require("./src/routes/sensor")
+var silosRouter = require("./src/routes/silos");
 
 
 app.use(express.json());
@@ -28,7 +30,9 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/propriedade", propriedadeRouter); // Adiciona a rota de propriedades
+app.use("/propriedade", propriedadeRouter); 
+app.use("/sensor", sensorRouter); 
+app.use("/silos",silosRouter);
 
 
 app.listen(PORTA_APP, function () {

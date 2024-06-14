@@ -133,15 +133,14 @@
             
 
             <div class="graficos-cards">
-                <h3> Gráfico diário de Temperatura </h3>
-                <div>
-                    <canvas id="temperatura"></canvas>
+                <h3> Gráficos diários de Temperatura</h3>
+                <div id="graficos">
+
                 </div>
             </div>
             <div class="graficos-cards">
-                <h3> Gráfico diário de Umidade</h3>
-                <div>
-                    <canvas id="umidade"></canvas>
+                <h3> Gráficos diários de Umidade</h3>
+                <div id="graficosUmidade">
                 </div>
             </div>
 
@@ -203,79 +202,211 @@
         const temperatura = document.getElementById('temperatura');
         const umidade = document.getElementById('umidade');
 
-        new Chart(temperatura, {
-            type: 'line',
-            data: {
-                labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'],
-                datasets: [{
-                    label: 'Temperatura',
-                    data: ['5', 19, 33, 35, 22, 33, 20, 22, 33, 32, 35, 25, 34, 40],
-                    borderWidth: 1,
-                    borderColor: '#5ccc95',
-                    color: '#0000',
-                    backgroundColor: '#5ccc95'
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        labels: {
-                            // This more specific font property overrides the global property
-                            font: {
-                                size: 20
-                            },
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
+        let charts = []; // Array para armazenar referências aos gráficos criados
+    let chartsUmidade = [];
+
+    //Temperatura
+
+    function exibirSensoresTemperaturaDoUsuario() {
+        var userIdVar = sessionStorage.getItem('ID_USUARIO');
+        var numeroSensor = 1;
+
+        fetch(`/sensor/consultarSensoresPropriedade/${userIdVar}`)
+            .then(response => response.json())
+            .then(sensor => {
+                sessionStorage.SENSOR = JSON.stringify(sensor); // Armazena os sensores na sessão
+                sensor.forEach(sensor => {
+                    document.getElementById("graficos").innerHTML += `
+                        <div id="grafico${sensor.id}" class="grafico-container">
+                            <h3 class="tituloGraficos">
+                                <span id="tituloSensor${sensor.id}">Sensor ${numeroSensor} - ID: ${sensor.id}</span>
+                            </h3>
+                            <div class="graph">
+                                <canvas id="myChartCanvas${sensor.id}"></canvas>
+                            </div>
+                            <div class="label-captura">
+                                <p id="avisoCaptura${sensor.id}" style="color: white"></p>
+                            </div>
+                        </div>
+                    `;
+                    numeroSensor += 1;
+                });
+                atualizarGraficos();
+            })
+            .catch(error => console.error('Erro ao obter sensores:', error));
+    }
+
+    function atualizarGraficos() {
+        charts.forEach(chart => {
+            chart.destroy(); // Remove o gráfico existente
         });
-        new Chart(umidade, {
-            type: 'line',
-            data: {
-                labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'],
-                datasets: [{
-                    label: 'Umidade',
-                    data: [40, 40, 45, 47, 45, 40, 40, 42, 45, 42, 43, 44],
-                    borderWidth: 1,
-                    borderColor: '#5ccc95',
-                    color: '#0000',
-                    backgroundColor: '#5ccc95'
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        labels: {
-                            // This more specific font property overrides the global property
-                            font: {
-                                size: 20
-                            },
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+        charts = []; // Limpa o array de gráficos
+
+        var userIdVar = sessionStorage.getItem('ID_USUARIO');
+        fetch(`/sensor/consultarSensoresPropriedade/${userIdVar}`)
+            .then(response => response.json())
+            .then(sensor => {
+                sensor.forEach(sensor => {
+                    obterDadosGrafico(sensor.id);
+                });
+            })
+            .catch(error => console.error('Erro ao obter sensores:', error));
+    }
+
+    function obterDadosGrafico(idSensor) {
+        fetch(`/sensor/consultarLeituraTemperaturaSensor/${idSensor}`, { cache: 'no-store' }).then(function(response) {
+            if (response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGrafico(resposta, idSensor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
             }
+        })
+        .catch(function(error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function plotarGrafico(resposta, idSensor) {
+        console.log('iniciando plotagem do gráfico...');
+
+        let horarios = [];
+        let dados = {
+            labels: horarios,
+            datasets: [{
+                label: 'Temperatura',
+                data: [],
+                fill: false,
+                borderColor: 'white',
+                tension: 0.1
+            }]
+        };
+
+        resposta.forEach(registro => {
+            horarios.push(registro.dataHora);
+            dados.datasets[0].data.push(registro.temperatura);
         });
 
+        const config = {
+            type: 'line',
+            data: dados,
+        };
 
+        let ctx = document.getElementById(`myChartCanvas${idSensor}`).getContext('2d');
+        let chart = new Chart(ctx, config);
+        charts.push(chart); // Adiciona o gráfico ao array
+    }
 
-        function sessao() {
-            const idUsuario = sessionStorage.ID_USUARIO
-            const nome = sessionStorage.NOME_USUARIO
+    //Umidade
+    function exibirSensoresUmidadeDoUsuario() {
+        var userIdVar = sessionStorage.getItem('ID_USUARIO');
+        var numeroSensor = 1;
 
-            nomeUsuario.innerHTML = nome
+        fetch(`/sensor/consultarSensoresPropriedade/${userIdVar}`)
+            .then(response => response.json())
+            .then(sensor => {
+                sessionStorage.SENSOR = JSON.stringify(sensor); // Armazena os sensores na sessão
+                sensor.forEach(sensor => {
+                    document.getElementById("graficosUmidade").innerHTML += `
+                        <div id="graficoUmidade${sensor.id}" class="grafico-container">
+                            <h3 class="tituloGraficos">
+                                <span id="tituloSensorUmidade${sensor.id}">Sensor ${numeroSensor} - ID: ${sensor.id}</span>
+                            </h3>
+                            <div class="graph">
+                                <canvas id="myChartCanvasUmidade${sensor.id}"></canvas>
+                            </div>
+                            <div class="label-captura">
+                                <p id="avisoCaptura${sensor.id}" style="color: white"></p>
+                            </div>
+                        </div>
+                    `;
+                    numeroSensor += 1;
+                });
+                atualizarGraficosUmidade();
+            })
+            .catch(error => console.error('Erro ao obter sensores:', error));
+    }
+
+    function atualizarGraficosUmidade() {
+        chartsUmidade.forEach(chart => {
+            chart.destroy(); // Remove o gráfico existente
+        });
+        chartsUmidade = []; // Limpa o array de gráficos
+
+        var userIdVar = sessionStorage.getItem('ID_USUARIO');
+        fetch(`/sensor/consultarSensoresPropriedade/${userIdVar}`)
+            .then(response => response.json())
+            .then(sensor => {
+                sensor.forEach(sensor => {
+                    obterDadosGraficoUmidade(sensor.id);
+                });
+            })
+            .catch(error => console.error('Erro ao obter sensores:', error));
+    }
+
+    function obterDadosGraficoUmidade(idSensor) {
+        fetch(`/sensor/consultarUmidadeTemperaturaSensor/${idSensor}`, { cache: 'no-store' }).then(function(response) {
+            if (response.ok) {
+                response.json().then(function(resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGraficoUmidade(resposta, idSensor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function(error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function plotarGraficoUmidade(resposta, idSensor) {
+        console.log('iniciando plotagem do gráfico...');
+
+        let horarios = [];
+        let dados = {
+            labels: horarios,
+            datasets: [{
+                label: 'Umidade',
+                data: [],
+                fill: false,
+                borderColor: 'white',
+                tension: 0.1
+            }]
+        };
+
+        resposta.forEach(registro => {
+            horarios.push(registro.dataHora);
+            dados.datasets[0].data.push(registro.umidade);
+        });
+
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        let ctx = document.getElementById(`myChartCanvasUmidade${idSensor}`).getContext('2d');
+        let chart = new Chart(ctx, config);
+        chartsUmidade.push(chart); // Adiciona o gráfico ao array
         }
 
+        function sessao() {
+            const idUsuario = sessionStorage.ID_USUARIO;
+            const nome = sessionStorage.NOME_USUARIO;
+            nomeUsuario.innerHTML = nome;
+        }
 
+        // Inicializa os gráficos quando a página carrega
+        window.onload = function() {
+            exibirSensoresTemperaturaDoUsuario();
+            setInterval(atualizarGraficos, 300000);
+            exibirSensoresUmidadeDoUsuario();
+            setInterval(atualizarGraficosUmidade, 300000);
+        };
 
     </script>
 

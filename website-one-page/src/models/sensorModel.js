@@ -7,7 +7,7 @@ function consultarSensoresPropriedade(idUsuario)
                         inner join silos on sensor.fkSilo = silos.id
                         inner join propriedade on silos.fkPropriedade = propriedade.id
                         inner join usuario on propriedade.fkUsuario = usuario.id
-                        where usuario.id = ${idUsuario};`;
+                        where usuario.id = ${idUsuario} LIMIT 4;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

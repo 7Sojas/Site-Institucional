@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(../assets/background.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 100%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #fff;
+    font-size: 80px;
+}
+
+textarea[type="text"] {
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 500px;
+    height: 100px;
+}
+
+select,
+button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #081f0d;
+    color: #FFFFFF;
+    border: none;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: #FFFFFF;
+    color: #081f0d;
+}
+
+h3 {
+    color: #fff;
+    font-size: 30px;
+}
+
+#resposta {
+    margin-top: 20px;
+    padding: 10px;
+    font-weight: bolder ;
+    width: 50vw;
+    background-color: rgb(31, 31, 31, 50%);
+    border-radius: 5px;
+    color: #fff;
+    text-align: left;
+    display: none;
+    font-size: 17px;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
+.janelaIA {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+img {
+    width: 200px;
+    height: 150px;
+}

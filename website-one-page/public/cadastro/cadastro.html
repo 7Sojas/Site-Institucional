@@ -85,6 +85,9 @@
       var senhaVar = input_senha.value;
       var confirmacaoSenhaVar = input_confirmarSenha.value;
       var cpfVar = input_cpf.value
+        if(cpfVar.length >= 12 || cpfVar.length < 11){
+        alert("O campo CPF precisa ter 11 Números")
+      }
       if (
         nomeVar == "" ||
         emailVar == "" ||

@@ -3,9 +3,11 @@ var sensorModel = require("../models/sensorModel");
 
 function consultarSensoresPropriedade(req,res)
 {
-    var idUsuario = req.params.idUsuario;
+    var siloId = req.params.id;
+    console.log(siloId);
+    console.log('Controller');
 
-    sensorModel.consultarSensoresPropriedade(idUsuario)
+    sensorModel.consultarSensoresPropriedade(siloId)
     .then(
         function (resultado) 
         {

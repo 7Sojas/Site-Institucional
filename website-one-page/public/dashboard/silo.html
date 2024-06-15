@@ -15,7 +15,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-    <title>Dashboard - HOME</title>
+    <title>Dashboard - Painel de monitoramento</title>
 
 </head>
 
@@ -63,13 +63,13 @@
                             <path d="m18 15-2-2" />
                             <path d="m15 18-2-2" />
                         </svg><span>AJUDA</span></a></li>
-                <li><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                        <li onclick="logout()"><span id="logout"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-log-out">
                             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                             <polyline points="16 17 21 12 16 7" />
                             <line x1="21" x2="9" y1="12" y2="12" />
-                        </svg><span>SAIR</span></a></li>
+                        </svg><span>SAIR</span></span></li>
             </ul>
 
             <div>
@@ -163,6 +163,7 @@
         const queryString = window.location.search
         const params = new URLSearchParams(queryString)
         const id = params.get('id')
+      
 
         
 
@@ -211,7 +212,7 @@
         var userIdVar = sessionStorage.getItem('ID_USUARIO');
         var numeroSensor = 1;
 
-        fetch(`/sensor/consultarSensoresPropriedade/${userIdVar}`)
+        fetch(`/sensor/consultarSensoresPropriedade/${id}`)
             .then(response => response.json())
             .then(sensor => {
                 sessionStorage.SENSOR = JSON.stringify(sensor); // Armazena os sensores na sessão
@@ -305,7 +306,7 @@
         var userIdVar = sessionStorage.getItem('ID_USUARIO');
         var numeroSensor = 1;
 
-        fetch(`/sensor/consultarSensoresPropriedade/${userIdVar}`)
+        fetch(`/sensor/consultarSensoresPropriedade/${id}`)
             .then(response => response.json())
             .then(sensor => {
                 sessionStorage.SENSOR = JSON.stringify(sensor); // Armazena os sensores na sessão
@@ -399,6 +400,12 @@
             const nome = sessionStorage.NOME_USUARIO;
             nomeUsuario.innerHTML = nome;
         }
+
+        function logout() {
+        sessionStorage.clear()
+
+        window.location = '../index.html'
+    }
 
         // Inicializa os gráficos quando a página carrega
         window.onload = function() {

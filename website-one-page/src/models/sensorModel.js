@@ -1,13 +1,13 @@
 var database = require("../database/config")
 
 
-function consultarSensoresPropriedade(idUsuario)
+function consultarSensoresPropriedade(siloId)
 {
     var instrucaoSql = `select sensor.id, sensor.tipo from sensor
                         inner join silos on sensor.fkSilo = silos.id
                         inner join propriedade on silos.fkPropriedade = propriedade.id
                         inner join usuario on propriedade.fkUsuario = usuario.id
-                        where usuario.id = ${idUsuario} LIMIT 4;`;
+                        where silos.id = ${siloId};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

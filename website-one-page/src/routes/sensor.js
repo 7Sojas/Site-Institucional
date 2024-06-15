@@ -4,7 +4,7 @@ var router = express.Router();
 
 var sensorController = require("../controllers/sensorController");
 
-router.get("/consultarSensoresPropriedade/:idUsuario", function (req, res) 
+router.get("/consultarSensoresPropriedade/:id", function (req, res) 
 {
     sensorController.consultarSensoresPropriedade(req, res);
 });
